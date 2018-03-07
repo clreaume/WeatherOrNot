@@ -54,6 +54,7 @@
 		</dependency>
 
 
+
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -73,6 +74,7 @@
 			<version>5.2.4.Final</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.hibernate.common/hibernate-commons-annotations -->
+
 		<dependency>
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
@@ -85,10 +87,7 @@
 			<version>1.0.2.Final</version>
 		</dependency>
 
-
-
 		<dependency>
-
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.1</version>
@@ -114,4 +113,5 @@
 			<version>20140107</version>
 		</dependency>
 	</dependencies>
+
 </project>

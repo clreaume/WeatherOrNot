@@ -3,6 +3,7 @@ package com.gc.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,6 +15,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
+
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -24,6 +26,8 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -31,17 +35,19 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-
 /**
  * 
  * author: WeatherOrNot
  *
+ * 
  */
+// wunderground api key: be4423cb67742fcc
 
 @Controller
 public class HomeController {
 
-	@RequestMapping("/") 
+	@RequestMapping("/")
+
 	public ModelAndView index(Model model) {
 
 		String prodCenter = "";
@@ -54,6 +60,7 @@ public class HomeController {
 			// HttpHost holds the variables needed for the connections
 			// default port for http is 80
 			// default port for https is 443
+
 			HttpHost host = new HttpHost("api.wunderground.com", 80, "http");
 
 			// HttpGet retrieves the info identified by the request url (returns as an
@@ -61,36 +68,28 @@ public class HomeController {
 			HttpGet getPage = new HttpGet("/api.wunderground.com/api/83ee1eafa5306085/conditions/q/MI/Detroit.json");
 
 			HttpResponse resp = http.execute(host, getPage);
-			
 
 			// casting the entity returned to a string
 			String jsonString = EntityUtils.toString(resp.getEntity());
 
-			
-            System.out.println(jsonString);
-			
+			System.out.println(jsonString);
+
 			// assign the returned result to a json object
 			JSONObject json = new JSONObject(jsonString);
-			
+
 			prodCenter = json.get("current_observation").toString();
 			String test = json.getJSONObject("current_observation").getString("weather");
 			String test2 = json.getJSONObject("current_observation").getJSONObject("image").getString("url");
-			String test3 = json.getJSONObject("current_observation").getString( "icon_url");
-			
-			
-			
+			String test3 = json.getJSONObject("current_observation").getString("icon_url");
+
 			System.out.println(test);
 			System.out.println(test2);
 			System.out.println(test3);
-			
-			
-			
-	
+
 			// this is a test print to our console to make sure we are communicating with
 			// the API (response code should be 200)
 			System.out.println("Response code: " + resp.getStatusLine().getStatusCode());
 
-			
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -207,4 +206,5 @@ public class HomeController {
 		return new ModelAndView("index", "centerData", result);
 
 	}
+
 }
