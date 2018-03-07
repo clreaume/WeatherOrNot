@@ -23,14 +23,14 @@ public class Item {
 		
 	}
 	
-	public Item(boolean inHamper, int userId, String type, String description, String imageURL, String itemId) {
+	//itemID removed from below constructor since it's auto-generated
+	public Item(boolean inHamper, int userId, String type, String description, String imageURL) {
 		super();
 		this.inHamper = inHamper;
 		this.userId = userId;
 		this.type = type;
 		this.description = description;
 		this.imageURL = imageURL;
-		this.itemId = itemId;
 	}
 	
 	

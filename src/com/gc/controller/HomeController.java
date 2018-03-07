@@ -1,39 +1,30 @@
 package com.gc.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
 
-import java.io.StringReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.servlet.http.HttpSession;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
-import org.apache.http.ParseException;
-
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+
+import com.gc.model.DAOItemImpl;
+import com.gc.model.DAOUserImpl;
+import com.gc.model.Item;
+import com.gc.model.User;
 
 /**
  * 
@@ -44,14 +35,17 @@ import org.xml.sax.SAXException;
 // wunderground api key: be4423cb67742fcc
 
 @Controller
+@SessionAttributes("user1")
 public class HomeController {
+	
+	//DAO USER IMPLEMENTATION OBJECT
+	DAOUserImpl usr = new DAOUserImpl();
+	//DAO ITEM IMPLEMENTATION OBJECT
+	DAOItemImpl itm = new DAOItemImpl();
 
-	@RequestMapping("/")
-
+	@RequestMapping("/") //THE STUFF BELOW SHOULD MOVE OUT OF THIS CONTROLLER
 	public ModelAndView index(Model model) {
-
 		String prodCenter = "";
-
 		try {
 			// the HttpClient Interface represents the contract for the HTTP request
 			// execution
@@ -100,111 +94,201 @@ public class HomeController {
 
 		return new ModelAndView("index", "centerData", prodCenter);
 	}
-
-	// this is an alternative way to pull in json data
-	@RequestMapping("/nasadata")
-	public ModelAndView nasaData() {
-
-		String center = "";
-		String city = "";
-		String contact = "";
-		String forPrint = "";
-
-		try {
-			// this is how we create the url code in order to call the JSON response with
-			// info we request
-			URL url = new URL("https://data.nasa.gov/resource/9g7e-7hzz.json");
-
-			// the openstream() allows us to open and read the url that was given -- we will
-			// need to loop through this
-			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-
-			String line = reader.readLine();
-			String jsonString = "";
-
-			while (line != null) {
-				jsonString += line;
-				line = reader.readLine();
-			}
-
-			JSONArray json = new JSONArray(jsonString);
-
-			for (int i = 0; i < json.length(); i++) {
-				center = json.getJSONObject(i).getString("center");
-				city = json.getJSONObject(i).getString("city");
-				contact = json.getJSONObject(i).getString("contact");
-				forPrint += ("<h6>" + center + ", " + city + ", " + contact + "</h6>");
-			}
-
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return new ModelAndView("welcome", "message", forPrint);
+	
+	
+	@RequestMapping("getsignup")
+	public String giveSignUp() {
+		return "signupform";
 	}
-
-	@RequestMapping("xmldata")
-	public ModelAndView xmlData() {
-
-		String result = "";
-		try {
-			// the HttpClient Interface represents the contract for the HTTP request
-			// execution
-			HttpClient http = HttpClientBuilder.create().build();
-
-			// HttpHost holds the variables needed for the connections
-			// default port for http is 80
-			// default port for https is 443
-			HttpHost host = new HttpHost("forecast.weather.gov", 80, "http");
-
-			// HttpGet retrieves the info identified by the request url (returns as an
-			// entity)
-			HttpGet getPage = new HttpGet("/MapClick.php?lat=42.331427&lon=-83.045754&FcstType=xml");
-
-			HttpResponse resp = http.execute(host, getPage);
-
-			// casting the entity returned to a string
-			String xmlString = EntityUtils.toString(resp.getEntity());
-
-			// factory is going to enable our application to obtain a parser for the XML DOM
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
-			DocumentBuilder db = dbf.newDocumentBuilder();
-
-			InputSource inStream = new InputSource();
-			inStream.setCharacterStream(new StringReader(xmlString));
-
-			Document doc = db.parse(inStream);
-
-			String weatherForecast = "";
-
-			NodeList nl = doc.getElementsByTagName("text");
-
-			for (int i = 0; i < nl.getLength(); i++) {
-				Element nameElement = (Element) nl.item(i);
-				weatherForecast = nameElement.getFirstChild().getNodeValue().trim();
-				result += ("<h6>" + weatherForecast + "</h6>");
-
-			}
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	
+	//User thisUser = new User();
+	
+	@RequestMapping ("createuser")
+	public ModelAndView createUser(HttpSession session, @RequestParam("fname") String firstName, @RequestParam("lname") String lastName, 
+			@RequestParam("email") String email, @RequestParam("password") String password) {
+		
+//		thisUser.setFirstName(firstName);
+//		thisUser.setLastName(lastName);
+//		thisUser.setEmail(email);
+//		thisUser.setPassword(password);
+		
+	
+		User tempUser = new User(firstName, lastName, email, password);
+		session.setAttribute("user1", tempUser);
+		
+		//ERROR BELOW SHOULD BE RESOLVED WHEN SC PUSHES
+		usr.createUser(tempUser);
+		
+		return new ModelAndView("fillCloset", "name", firstName);
+		//TODO Add ${name} EL tag to fillCloset - "Welcome x! Let's fill your closet"
+		
+	}
+	
+	@RequestMapping("getItemInputForm")
+	public String getItemInputForm(@RequestParam("itemOfClothing") String itemChosen) {
+		String formToReturn;
+		
+		switch (itemChosen) {
+		case "top":
+			formToReturn = "topForm";
+			break;
+		case "sweater":
+			formToReturn = "sweaterForm";
+			break;
+		case "outerwear":
+			formToReturn = "outerwearForm";
+			break;
+		case "bottom":
+			formToReturn = "bottomForm";
+			break;
+		case "dress":
+			formToReturn = "dressForm";
+			break;
+		case "shoe":
+			formToReturn = "shoeForm";
+			break;
+		case "accessory":
+			formToReturn = "accessoryForm";
+			break;
+		default:
+			formToReturn = "fillCloset";
+			
 		}
-		return new ModelAndView("index", "centerData", result);
+			
+		return formToReturn;
 
 	}
+	
+	@RequestMapping("addItem")
+	public String addItem(@ModelAttribute("user1") User user1, @RequestParam("imageURL") String url, @RequestParam("type") String type, @RequestParam("description") String desc) {
+		
+		
+		Item tempItem = new Item(false, user1.getUserId(), type, desc, url);
+
+		//TODO COME BACK
+		return "itemAdded";
+		
+	}
+	
+	@RequestMapping("addAnother")
+	public String giveClosetFormAgain() {
+		return "fillCloset";
+	}
+	
+	@RequestMapping("viewCloset")
+	public ModelAndView viewCloset() {
+		
+		//ERROR BELOW SHOULD BE RESOLVED WHEN SC PUSHES
+		ArrayList<Item> userCloset = itm.getAllItems();
+		
+		return ModelAndView("closet", "clothes", userCloset);
+		//TODO ADD ${clothes} EL tag in closet.jsp, with weird 'core' tags to loop through...
+	}
+	
+	//this mapping works with each item having their own delete button. not ideal but...
+	@RequestMapping("deleteItem") 
+	//THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
+	public ModelAndView deleteItem(@RequestParam("id") String id) {
+		
+		Item tempItem = new Item();
+		tempItem.setItemId(id);
+		
+		//ERROR BELOW SHOULD BE RESOLVED WHEN SC PUSHES
+		itm.deleteItem(tempItem);
+		
+		return new ModelAndView("closet", "msg", "Your " + tempItem.getType() + "has been deleted. Your updated closet: ");
+		//TODO add ${msg} EL tag in closet.jsp - at top, above printing out of pictures
+	}
+	
+	@RequestMapping("putInHamp")
+	//THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
+	public ModelAndView putInHamp(@RequestParam("id") String id) {
+		Item tempItem = new Item();
+		tempItem.setItemId(id);
+		
+		//Should changing hamper status be its own DAO method since it 
+		//modifies database data?
+		
+		return new ModelAndView("", "", "");
+	}
+	
+	@RequestMapping("viewHamp")
+	public ModelAndView viewHamper() {
+		//ERROR BELOW SHOULD BE RESOLVED WHEN SC PUSHES
+		ArrayList<Item> allItems = itm.getAllItems();
+		
+		ArrayList<Item> itemsInHamper;
+		for (Item item : allItems) {
+			if(item.isInHamper()) {
+				itemsInHamper.add(item);
+			}
+		}
+		
+		return new ModelAndView("hamper", "hamperItems", itemsInHamper);
+		//TODO add ${hamperItems} EL tag to hamper page & use weird core thing to print each out...
+	}
+	
+	@RequestMapping("putInCloset")
+	//THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
+	public ModelAndView putInCloset(@RequestParam("id") String id) {
+		
+		Item tempItem = new Item();
+		tempItem.setItemId(id);
+		
+		
+		//Should changing hamper status be its own DAO method since it 
+		//modifies database data?
+		
+		
+		return new ModelAndView("", "", "");
+	}
+	
+	boolean layerNeeded;
+	boolean outerwearNeeded;
+	boolean accessoryNeeded;
+	
+	@RequestMapping("home")
+	public ModelAndView getFashionCast() {
+		
+		ArrayList<Item> predictedOutfit = null;
+		
+		//SOME ALGORITHM HERE
+		//ADD ITEMS RETRIEVED TO predictedOutfit ARRAY LIST?
+		
+		//set layerNeeded, outerwearNeeded, accessoryNeeded
+		
+		return new ModelAndView("fashionCast", "", predictedOutfit);
+	}
+	
+	@RequestMapping("baseOutfitSelected")
+	public ModelAndView baseOutfitChosen() {
+
+		String nextPage;
+		
+		if (layerNeeded) {
+			nextPage = "addLayer";
+		}
+	
+		else if (outerwearNeeded) {
+			nextPage = "addOuterwear";
+		}
+		
+		else if (accessoryNeeded) {
+			nextPage = "addAccessory";
+		}
+		
+		else {
+			nextPage = "readyToGo";
+		}
+		
+		return new ModelAndView(nextPage, "", "something here");
+	}
+	
+	
+	
+	
+	
+
+	
 
 }
