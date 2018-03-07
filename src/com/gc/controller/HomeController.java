@@ -197,24 +197,15 @@ public class HomeController {
 		Item tempItem = new Item();
 		tempItem.setItemId(id);
 		
-		//Should changing hamper status be its own DAO method since it 
-		//modifies database data?
+		itm.changeHampStatus(tempItem);
 		
-		return new ModelAndView("", "", "");
+		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems());
 	}
 	
 	@RequestMapping("viewHamp")
 	public ModelAndView viewHamper() {
-		ArrayList<Item> allItems = itm.getAllItems();
-		
-		ArrayList<Item> itemsInHamper = null;
-		for (Item item : allItems) {
-			if(item.isInHamper()) {
-				itemsInHamper.add(item);
-			}
-		}
-		
-		return new ModelAndView("hamper", "hamperItems", itemsInHamper);
+				
+		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems());
 		//TODO add ${hamperItems} EL tag to hamper page & use weird core thing to print each out...
 	}
 	
@@ -225,12 +216,10 @@ public class HomeController {
 		Item tempItem = new Item();
 		tempItem.setItemId(id);
 		
-		
-		//Should changing hamper status be its own DAO method since it 
-		//modifies database data?
-		
-		
-		return new ModelAndView("", "", "");
+		itm.changeHampStatus(tempItem);
+	
+		return new ModelAndView("closet", "msg", "Your item added to closet!");
+		//TODO add ${msg} EL tag in closet.jsp - at top, above printing out of pictures
 	}
 	
 	boolean layerNeeded;

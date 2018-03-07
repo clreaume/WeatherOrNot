@@ -64,23 +64,41 @@ public class DAOItemImpl implements DAOItem {
 		return outfit;
 	}
 
+	@Override
+	public void changeHampStatus(Item item){
+		
+		if (item.isInHamper()) {
+			item.setInHamper(false);
+		}
+		
+		else {
+			item.setInHamper(true);
+		}
+		
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		session.update(item);
+		tx.commit();
+		session.close();
+	}
+	
+	
+	@Override
+	public ArrayList<Item> getHamperItems(){
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria crit = session.createCriteria(Item.class);
+		crit.add(Restrictions.eq("inHamp", true));
+		
+		ArrayList<Item> hamperItemList = (ArrayList<Item>) crit.list();
+		
+		tx.commit();
+		session.close();
+		return hamperItemList;
+	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

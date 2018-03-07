@@ -11,5 +11,9 @@ public interface DAOItem {
 	void deleteItem(Item item);
 	
 	ArrayList<Item> getOutfit();
+	
+	void changeHampStatus(Item item);
+	
+	ArrayList<Item> getHamperItems();
 
 }
