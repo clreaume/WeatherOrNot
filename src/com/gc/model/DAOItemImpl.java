@@ -28,7 +28,14 @@ public class DAOItemImpl implements DAOItem {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
+		
+		
 		Criteria crit = session.createCriteria(Item.class);
+		
+		//TODO create restriction to only get item objects back that BELONG TO THIS USER
+		//crit.add(Restrictions.eq("userID", user1.getUserID()));
+		
+		
 		ArrayList<Item> itemList = (ArrayList<Item>) crit.list();
 		System.out.println(itemList.size());
 		

@@ -33,6 +33,7 @@ public class Item {
 		this.imageURL = imageURL;
 	}
 	
+	//CR: Why is there no getter/setter for category?
 	
 	@Column
 	public boolean isInHamper() {

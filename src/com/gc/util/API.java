@@ -11,7 +11,13 @@ public class API {
 	private String wind_gust_mph;
 	private String icon_URL;
 	
-	// the constructor API
+	
+	// the empty constructor API
+	public API () {
+		
+	}
+	
+	// the overloaded constructor API
 	public API(String weather, double temp_f, String feelslike_f, String precip_today_in, String icon,
 			String relative_humidity, String windchill_f, String wind_gust_mph, String icon_URL) {
 		//super();
