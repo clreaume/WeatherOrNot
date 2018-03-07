@@ -101,22 +101,17 @@ public class HomeController {
 		return "signupform";
 	}
 	
-	//User thisUser = new User();
+
 	
 	@RequestMapping ("createuser")
 	public ModelAndView createUser(HttpSession session, @RequestParam("fname") String firstName, @RequestParam("lname") String lastName, 
 			@RequestParam("email") String email, @RequestParam("password") String password) {
 		
-//		thisUser.setFirstName(firstName);
-//		thisUser.setLastName(lastName);
-//		thisUser.setEmail(email);
-//		thisUser.setPassword(password);
 		
 	
 		User tempUser = new User(firstName, lastName, email, password);
 		session.setAttribute("user1", tempUser);
 		
-		//ERROR BELOW SHOULD BE RESOLVED WHEN SC PUSHES
 		usr.createUser(tempUser);
 		
 		return new ModelAndView("fillCloset", "name", firstName);
@@ -162,12 +157,10 @@ public class HomeController {
 	@RequestMapping("addItem")
 	public String addItem(@ModelAttribute("user1") User user1, @RequestParam("imageURL") String url, @RequestParam("type") String type, @RequestParam("description") String desc) {
 		
-		
 		Item tempItem = new Item(false, user1.getUserId(), type, desc, url);
+		itm.addItem(tempItem);
 
-		//TODO COME BACK
 		return "itemAdded";
-		
 	}
 	
 	@RequestMapping("addAnother")
@@ -178,10 +171,9 @@ public class HomeController {
 	@RequestMapping("viewCloset")
 	public ModelAndView viewCloset() {
 		
-		//ERROR BELOW SHOULD BE RESOLVED WHEN SC PUSHES
 		ArrayList<Item> userCloset = itm.getAllItems();
 		
-		return ModelAndView("closet", "clothes", userCloset);
+		return new ModelAndView("closet", "clothes", userCloset);
 		//TODO ADD ${clothes} EL tag in closet.jsp, with weird 'core' tags to loop through...
 	}
 	
@@ -193,7 +185,6 @@ public class HomeController {
 		Item tempItem = new Item();
 		tempItem.setItemId(id);
 		
-		//ERROR BELOW SHOULD BE RESOLVED WHEN SC PUSHES
 		itm.deleteItem(tempItem);
 		
 		return new ModelAndView("closet", "msg", "Your " + tempItem.getType() + "has been deleted. Your updated closet: ");
@@ -214,10 +205,9 @@ public class HomeController {
 	
 	@RequestMapping("viewHamp")
 	public ModelAndView viewHamper() {
-		//ERROR BELOW SHOULD BE RESOLVED WHEN SC PUSHES
 		ArrayList<Item> allItems = itm.getAllItems();
 		
-		ArrayList<Item> itemsInHamper;
+		ArrayList<Item> itemsInHamper = null;
 		for (Item item : allItems) {
 			if(item.isInHamper()) {
 				itemsInHamper.add(item);
