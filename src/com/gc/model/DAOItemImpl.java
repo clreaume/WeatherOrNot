@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.gc.util.HibernateUtil;
 
@@ -51,10 +52,35 @@ public class DAOItemImpl implements DAOItem {
 
 	@Override
 	public ArrayList<Item> getOutfit() {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria crit = session.createCriteria(Item.class);
+		//crit.add(Restrictions.like(propertyName, value))
+		ArrayList<Item> outfit = (ArrayList<Item>)crit.list();
+		tx.commit();
+		session.close();
+		return outfit;
 	}
 
-	
-	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
