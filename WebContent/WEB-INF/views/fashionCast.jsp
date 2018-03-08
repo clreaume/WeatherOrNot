@@ -7,6 +7,25 @@
 <title>Insert title here</title>
 </head>
 <body>
+table border="1">
+		<!-- only options for border are 1 or 0 -->
+		<c:forEach var="myVar" items="${outfitItems}">
+			<!-- var is what gets reassigned every iteration -->
 
+
+			<tr>
+			<td><img alt="" src=myVar.imageURL></td>
+				<td>${ myVar.cat}</td>
+				<td>${ myVar.type}</td>
+				<td>${ myVar.description}</td>
+			</tr>
+
+
+		</c:forEach>
+
+
+
+
+	</table>
 </body>
 </html>

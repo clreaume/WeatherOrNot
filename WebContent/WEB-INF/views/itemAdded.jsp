@@ -8,7 +8,13 @@
 </head>
 <body>
 <h4>What do you want to do with your life?</h4>
+
+<form action="addAnother">
 <button type="submit">Add Another Item</button>
+</form>
+
+<form action="viewCloset">
 <button type="submit">View Closet</button>
+</form>
 </body>
 </html>

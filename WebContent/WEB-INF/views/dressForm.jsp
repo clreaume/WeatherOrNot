@@ -8,18 +8,23 @@
 </head>
 <body>
 <h3>Dress</h3>
-<form action="">
-  <input type="text" placeholder="File Upload">
-  <input type="file" name="pic" accept="image"><br><br>
+<form action="addItem">
+  <input type="text" placeholder="File Upload" >
+  <input type="file" name="pic" accept="image" name = "imageURL"><br><br>
   <input type="text" placeholder="Give the Item name">
-  <button type="submit">Ok</button><br><br>
-  <input type="radio" name="clothes" value="Max">Max<br>
-  <input type="radio" name="clothes value="Fancy">Fancy<br>
-  <input type="radio" name="clothes" value="Party">Party<br>
-  <input type="radio" name="clothes value="Mindy">Mindy<br>
-  <input type="radio" name="clothes value="Flare">Flare<br>
-  <input type="radio" name="clothes value="Gown">Gown<br><br>
 
+  
+  <input type="radio" name="type" value="maxi">Maxi<br>
+  <input type="radio" name=type" value ="fancy">Fancy<br>
+  <input type="radio" name="type" value="party">Party<br>
+  <input type="radio" name="type" value="mindy">Mindy<br>
+  <input type="radio" name="type" value="flare">Flare<br>
+  <input type="radio" name="type" value="gown">Gown<br><br>
+  <input type = "hidden" name ="category" value = "DRESS">
+  
+  
+<textarea name="description" >Add a brief item description...</textarea>
+  
 
 <button type="submit">Add Item</button>
 <button type="submit">Cancel</button>

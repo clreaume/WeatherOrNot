@@ -8,14 +8,14 @@
 </head>
 <body>
 <h3>Join WeatherOrNot today</h3>
-	<form class="pure-form">
+	<form >
 	     
-        <input type="text" placeholder="First Name" required><br>
+        <input type="text" placeholder="First Name" name="fname" required><br>
         
-        <input type="text" placeholder="Last Name" required><br>
+        <input type="text" placeholder="Last Name" name="lname" required><br>
         
-        <input type="email" placeholder="Email" required><br>
-        <input type="password" placeholder="Password" required><br><br>
+        <input type="email" placeholder="Email" name="email" required><br>
+        <input type="password" placeholder="Password" name="password" required><br><br>
         <button type="submit" class="pure-button pure-button-primary">Sign Up</button>
 </form><br>
 <p>By signing up, you agree to the Terms of Service and Privacy Policy,incling Cookie Use. </p>

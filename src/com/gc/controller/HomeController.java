@@ -47,7 +47,7 @@ public class HomeController {
 	// DAO ITEM IMPLEMENTATION OBJECT
 	DAOItemImpl itm = new DAOItemImpl();
 
-	// API OBJECT - VALUES TO BE SET DURING API CALL
+	// API OBJECT - VALUES ING API CALL
 	API ourAPI = new API();
 
 	@RequestMapping("/") // THE STUFF BELOW SHOULD MOVE OUT OF THIS CONTROLLER
@@ -142,7 +142,7 @@ public class HomeController {
 			formToReturn = "bottomForm";
 			break;
 		case "dress":
-			formToReturn = "dressForm";
+			formToReturn = "e";
 			break;
 		case "shoe":
 			formToReturn = "shoeForm";
