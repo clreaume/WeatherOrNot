@@ -4,10 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Nasa Data</title>
+<title>Weather Or Not</title>
 </head>
 <body>
-Hi!
-${message}
+<h2>Welcome back ${msg}!</h2>
+
+<form action = "home">
+<input type="submit" value="Get outfit" >
+</form>
+
+<form action = "viewCloset">
+<input type="submit" value="View closet" >
+</form>
+
+<form action = "viewHamp">
+<input type="submit" value="View hamper">
+</form>
+
+
+
 </body>
 </html>

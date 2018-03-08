@@ -1,8 +1,12 @@
 package com.gc.model;
 
+import java.util.ArrayList;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.gc.util.HibernateUtil;
 
@@ -30,6 +34,23 @@ public class DAOUserImpl implements DAOUser {
 		tx.commit();
 		session.close();
 		
+	}
+
+	@Override
+	public User getUser(String email) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		
+		Criteria crit = session.createCriteria(User.class);
+		crit.add(Restrictions.eq("email", email));
+		
+		User userWithThisEmail = (User) crit.list();
+		
+		tx.commit();
+		session.close();
+		return userWithThisEmail;
 	}
 
 }
