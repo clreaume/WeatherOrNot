@@ -4,9 +4,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Shoes Form</title>
 </head>
 <body>
+<h3>Shoes</h3>
+<form action="">
+  <input type="text" placeholder="File Upload">
+  <input type="file" name="pic" accept="image"><br><br><br>
+  <input type="radio" name="clothes" value="Sneakers">Sneaker<br>
+  <input type="radio" name="clothes value="Boots">Boots<br>
+  <input type="radio" name="clothes" value="Waterproof Boots">Waterproof Boots<br>
+  <input type="radio" name="clothes value="Flat">Flat<br>
+  <input type="radio" name="clothes value="Heels">Heels<br>
+  <input type="radio" name="clothes value="Sandals">Sandals<br><br>
+  <input type="radio" name="clothes value="Dress Shoes">Dress Shoes<br><br>
 
+
+  <textarea name="description" size="20">
+  	Add a brief items description
+  </textarea><br>
+<button type="submit">Add Item</button>
+<button type="submit">Cancel</button>
+
+
+
+</form>
 </body>
 </html>

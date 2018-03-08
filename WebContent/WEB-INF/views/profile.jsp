@@ -7,6 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3>Edit User Info</h3>
+	<form class="pure-form">
+	     
+        <input type="text" placeholder="First Name" required><br><br>
+        
+        <input type="text" placeholder="Last Name" required><br><br>
+        <input type="text" placeholder="Primary Zip Code" required><br><br>
+        <input type="email" placeholder="Email" required><br><br>
+        <input type="password" placeholder="Password" required><br><br>
+        <input type="password" placeholder="Confirm Password" required><br><br>
+
+        <button type="submit">Save</button>
+</form>
 
 </body>
 </html>
