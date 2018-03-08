@@ -10,14 +10,14 @@
 <h3>Let's fill your closet!</h3>
 <h4>Pick a category of clothing to begin.</h4>
 <form action="">
-     <select name="dropbox">
-         <option value="Tops">Tops</option>
-         <option value="Sweaters">Sweaters</option>
-         <option value="Dress">Dress</option>
-         <option value="Bottoms">Bottoms</option>
-         <option value="Shoes">Shoes</option>
-         <option value="Outerwear">Outerwear</option>
-         <option value="Accessories">Accessories</option>
+     <select name="itemOfClothing">
+         <option value="topForm">Tops</option>
+         <option value="sweaterForm">Sweaters</option>
+         <option value="dressForm">Dress</option>
+         <option value="bottomForm">Bottoms</option>
+         <option value="shoeForm">Shoes</option>
+         <option value="outerwearForm">Outerwear</option>
+         <option value="accessoryForm">Accessories</option>
       </select><br><br><br> 
     <button type="submit">Select Category</button>
 </body>

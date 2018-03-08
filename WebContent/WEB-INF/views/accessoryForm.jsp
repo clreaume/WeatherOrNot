@@ -11,7 +11,7 @@
 <form action="">
   <input type="text" placeholder="File Upload">
   <input type="file" name="pic" accept="image"><br>
-  
+   
   </form>
  <form>
   <fieldset>
@@ -23,6 +23,7 @@
   <input type="radio" name="accessory" value="Scarf"> Scarf<br>
   <input type="radio" name="accessory" value="Sunglasses"> Sunglasses<br>
   <input type="radio" name="accessory" value="Gloves"> Gloves<br>
+ <input type = "hidden" name ="category" value = "ACCESSORY">
   
 </fieldset>
 </form>

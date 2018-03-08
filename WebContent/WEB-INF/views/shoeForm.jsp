@@ -18,6 +18,8 @@
   <input type="radio" name="clothes value="Heels">Heels<br>
   <input type="radio" name="clothes value="Sandals">Sandals<br><br>
   <input type="radio" name="clothes value="Dress Shoes">Dress Shoes<br><br>
+  <input type = "hidden" name ="category" value = "SHOE">
+  
 
 
   <textarea name="description" size="20">

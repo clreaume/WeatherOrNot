@@ -23,6 +23,7 @@
   <input type="radio" name="outerwear" value="Leather Jacket"> Leather Jacket<br>
   <input type="radio" name="outerwear" value="Winter Coat"> Winter Coat<br>
   <input type="radio" name="outerwear" value="Fur Coat"> Fur Coat<br>
+  <input type = "hidden" name ="category" value = "OUTERWEAR">
   
 </fieldset>
 </form>

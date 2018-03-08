@@ -19,7 +19,8 @@
   <input type="radio" name="clothes value="Mindy">Mindy<br>
   <input type="radio" name="clothes value="Flare">Flare<br>
   <input type="radio" name="clothes value="Gown">Gown<br><br>
-
+  <input type = "hidden" name ="category" value = "DRESS">
+  
 
 <button type="submit">Add Item</button>
 <button type="submit">Cancel</button>

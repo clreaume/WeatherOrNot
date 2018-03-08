@@ -20,6 +20,9 @@
   <input type="radio" name="sweater" value="Crewneck"> Crewneck<br>
   <input type="radio" name="sweater" value="Zip-Up"> Zip-Up<br>
   <input type="radio" name="sweater" value="Cardigan"> Cardigan<br>
+  <input type = "hidden" name ="category" value = "SWEATER">
+  
+  
   
   
 </fieldset>

@@ -17,7 +17,7 @@
   <input type="radio" name="clothes value="Tank-top  ">Tank-top<br>
   <input type="radio" name="clothes value="Blouse">Collared<br>
   <input type="radio" name="clothes value="Blouse">Atheltic wear<br><br>
-
+  <input type = "hidden" name ="category" value = "TOP">
 
   <textarea name="description" size="20">
   	Add a brief items description

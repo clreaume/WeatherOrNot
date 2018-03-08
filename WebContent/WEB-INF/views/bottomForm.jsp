@@ -17,6 +17,7 @@
   <input type="radio" name="bottom" value="Capris"> Capris<br>
   <input type="radio" name="bottom" value="Leggings"> Leggings<br>
   <input type="radio" name="bottom" value="Athletic"> Athletic Bottoms<br>
+  <input type = "hidden" name ="category" value = "BOTTOM">
 </fieldset>
 </form>
 
