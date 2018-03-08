@@ -121,7 +121,6 @@ public class HomeController {
 		usr.createUser(tempUser);
 
 		return new ModelAndView("fillCloset", "name", firstName);
-		// TODO Add ${name} EL tag to fillCloset - "Welcome x! Let's fill your closet"
 
 	}
 
@@ -131,7 +130,7 @@ public class HomeController {
 
 		switch (itemChosen) {
 		case "top":
-			formToReturn = "topForm";
+			formToReturn = "topform";
 			break;
 		case "sweater":
 			formToReturn = "sweaterForm";
@@ -157,7 +156,6 @@ public class HomeController {
 		}
 
 		return formToReturn;
-
 	}
 
 	@RequestMapping("addItem")
@@ -216,8 +214,7 @@ public class HomeController {
 	public ModelAndView viewHamper(@ModelAttribute("user1") User user1) {
 
 		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems(user1));
-		// TODO add ${hamperItems} EL tag to hamper page & use weird core thing to print
-		// each out...
+		
 	}
 
 	@RequestMapping("putInCloset")
@@ -230,7 +227,6 @@ public class HomeController {
 		itm.changeHampStatus(tempItem);
 
 		return new ModelAndView("closet", "msg", "Your item added to closet!");
-		// TODO add ${msg} EL tag in closet.jsp - at top, above printing out of pictures
 	}
 
 	
@@ -287,7 +283,7 @@ public class HomeController {
 //SET OUTFIT
 			for (Item item : allItems) {
 				// TOP MUST BE TANK TOP OR T-SHIRT
-				if (item.getType().equals("tank top")) {
+				if (item.getType().equals("tankTop")) {
 					hotTops.add(item);
 				} else if (item.getType().equals("tshirt")) {
 					hotTops.add(item);
