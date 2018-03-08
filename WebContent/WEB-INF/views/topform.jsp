@@ -8,15 +8,15 @@
 </head>
 <body>
 <h3>Tops</h3>
-<form action="">
+<form action="addItem">
   <input type="text" placeholder="File Upload">
-  <input type="file" name="pic" accept="image"><br><br><br>
-  <input type="radio" name="clothes" value="T-shirt">T-shirt<br>
-  <input type="radio" name="clothes value="Blouse">Blouse<br>
-  <input type="radio" name="clothes" value="Bottom-down">Bottom-down<br>
-  <input type="radio" name="clothes value="Tank-top  ">Tank-top<br>
-  <input type="radio" name="clothes value="Blouse">Collared<br>
-  <input type="radio" name="clothes value="Blouse">Atheltic wear<br><br>
+  <input type="file" name="pic" accept="image" name ="imageURL"><br><br><br>
+  <input type="radio" name="type" value="tshirt">T-shirt<br>
+  <input type="radio" name="type" value="blouse">Blouse<br>
+  <input type="radio" name="type" value="buttonDown">Bottom-down<br>
+  <input type="radio" name="type" value="tankTop">Tank-top<br>
+  <input type="radio" name="type" value="collard">Collard<br>
+  <input type="radio" name="type" value="athletic">Atheltic wear<br><br>
   <input type = "hidden" name ="category" value = "TOP">
 
   <textarea name="description" size="20">

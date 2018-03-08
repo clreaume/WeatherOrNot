@@ -8,16 +8,17 @@
 </head>
 <body>
 <h3>Shoes</h3>
-<form action="">
-  <input type="text" placeholder="File Upload">
-  <input type="file" name="pic" accept="image"><br><br><br>
-  <input type="radio" name="clothes" value="Sneakers">Sneaker<br>
-  <input type="radio" name="clothes value="Boots">Boots<br>
-  <input type="radio" name="clothes" value="Waterproof Boots">Waterproof Boots<br>
-  <input type="radio" name="clothes value="Flat">Flat<br>
-  <input type="radio" name="clothes value="Heels">Heels<br>
-  <input type="radio" name="clothes value="Sandals">Sandals<br><br>
-  <input type="radio" name="clothes value="Dress Shoes">Dress Shoes<br><br>
+<form action="addItem">
+  <input type="text" placeholder="File Upload" >
+  <input type="file" name="pic" accept="image" name = "imageURL"><br><br><br>
+  
+  <input type="radio" name="type" value="sneakers">Sneaker<br>
+  <input type="radio" name="type" value="boots">Boots<br>
+  <input type="radio" name="type" value="waterproofBoots">Waterproof Boots<br>
+  <input type="radio" name="type" value="flats">Flats<br>
+  <input type="radio" name="type" value="heels">Heels<br>
+  <input type="radio" name="type" value="sandals">Sandals<br><br>
+  <input type="radio" name="type" value="dressShoes">Dress Shoes<br><br>
   <input type = "hidden" name ="category" value = "SHOE">
   
 

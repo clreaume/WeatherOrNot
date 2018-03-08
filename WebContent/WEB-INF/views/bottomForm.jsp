@@ -8,28 +8,28 @@
 </head>
 <body>
 <h3>Bottoms</h3>
-<form>
-  <fieldset>
-  <input type="radio" name="bottom" value="Pants" > Pants<br>
-  <input type="radio" name="bottom" value="Jeans"> Jeans<br>
-  <input type="radio" name="bottom" value="Shorts"> Shorts<br>
-  <input type="radio" name="bottom" value="Skirt"> Skirt<br>
-  <input type="radio" name="bottom" value="Capris"> Capris<br>
-  <input type="radio" name="bottom" value="Leggings"> Leggings<br>
-  <input type="radio" name="bottom" value="Athletic"> Athletic Bottoms<br>
+<form action ="addItem">
+
+  <input type="text" placeholder="File Upload">
+  <input type="file" name="pic" accept="image" name ="imageURL"><br><br><br>
+
+  <input type="radio" name="type" value="pants" > Pants<br>
+  <input type="radio" name="type" value="jeans"> Jeans<br>
+  <input type="radio" name="type" value="shorts"> Shorts<br>
+  <input type="radio" name="type" value="skirt"> Skirt<br>
+  <input type="radio" name="type" value="capris"> Capris<br>
+  <input type="radio" name="type" value="leggings"> Leggings<br>
+  <input type="radio" name="type" value="athletic"> Athletic Bottoms<br>
   <input type = "hidden" name ="category" value = "BOTTOM">
-</fieldset>
-</form>
 
-<form action="/action_page.php" id="usrform">
 
-  <textarea name="comment" form="usrform">Add a brief item description...</textarea>
+
+  <textarea name="description">Add a brief item description...</textarea>
   
-</form>
 
 
  <button type="button AddItem-button" id="button1" >Add Item</button>
  <button type="button Cancel-button" id="button2">Cancel</button>
-
+</form>
 </body>
 </html>

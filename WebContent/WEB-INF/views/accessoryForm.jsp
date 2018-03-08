@@ -8,34 +8,28 @@
 </head>
 <body>
 <h3>Accessories</h3>
-<form action="">
+<form action="addItem">
   <input type="text" placeholder="File Upload">
-  <input type="file" name="pic" accept="image"><br>
+  <input type="file" name="pic" accept="image" name ="imageURL"><br>
    
-  </form>
- <form>
-  <fieldset>
-  <input type="radio" name="accessory" value="Watches"> Watches<br>
-  <input type="radio" name="accessory" value="Bracelets"> Bracelets<br>
-  <input type="radio" name="accessory" value="Necklace"> Necklace<br>
-  <input type="radio" name="accessory" value="Ear Rings"> Ear Rings<br>
-  <input type="radio" name="accessory" value="Hats"> Hats<br>
-  <input type="radio" name="accessory" value="Scarf"> Scarf<br>
-  <input type="radio" name="accessory" value="Sunglasses"> Sunglasses<br>
-  <input type="radio" name="accessory" value="Gloves"> Gloves<br>
+ 
+  <input type="radio" name="type" value="watch"> Watch<br>
+  <input type="radio" name="type" value="bracelet"> Bracelet<br>
+  <input type="radio" name="type" value="necklace"> Necklace<br>
+  <input type="radio" name="type" value="earrings"> Earrings<br>
+  <input type="radio" name="type" value="hat"> Hat<br>
+  <input type="radio" name="type" value="scarf"> Scarf<br>
+  <input type="radio" name="type" value="sunglasses"> Sunglasses<br>
+  <input type="radio" name="type" value="gloves"> Gloves<br>
  <input type = "hidden" name ="category" value = "ACCESSORY">
   
-</fieldset>
-</form>
 
-<form action="/action_page.php" id="usrform">
-
-  <textarea name="comment" form="usrform">Add a brief item description...</textarea>
+  <textarea name="description" >Add a brief item description...</textarea>
   
-</form>
 
-
- <button type="button AddItem-button" id="button1" >Add Item</button>
- <button type="button Cancel-button" id="button2">Cancel</button>
+ <button type="submit" >Add Item</button>
+ <button type="button">Cancel</button>
+ 
+ </form>
 </body>
 </html>
