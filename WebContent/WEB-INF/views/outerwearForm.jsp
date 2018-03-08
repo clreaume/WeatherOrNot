@@ -7,6 +7,35 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3>Outerwear</h3>
+<form action="">
+  <input type="text" placeholder="File Upload">
+  <input type="file" name="pic" accept="image"><br>
+  
+  </form>
+ <form>
+  <fieldset>
+  <input type="radio" name="outerwear" value="Jacket"> Jacket<br>
+  <input type="radio" name="outerwear" value="Fleece Jacket"> Fleece Jacket<br>
+  <input type="radio" name="outerwear" value="Rain Coat"> Rain Coat<br>
+  <input type="radio" name="outerwear" value="Parka Jacket"> Parka Jackets<br>
+  <input type="radio" name="outerwear" value="Pea Coat"> Pea Coat<br>
+  <input type="radio" name="outerwear" value="Leather Jacket"> Leather Jacket<br>
+  <input type="radio" name="outerwear" value="Winter Coat"> Winter Coat<br>
+  <input type="radio" name="outerwear" value="Fur Coat"> Fur Coat<br>
+  
+</fieldset>
+</form>
+
+<form action="/action_page.php" id="usrform">
+
+  <textarea name="comment" form="usrform">Add a brief item description...</textarea>
+  
+</form>
+
+
+ <button type="button AddItem-button" id="button1" >Add Item</button>
+ <button type="button Cancel-button" id="button2">Cancel</button>
 
 </body>
 </html>

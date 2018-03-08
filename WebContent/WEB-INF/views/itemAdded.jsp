@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Item Added</title>
 </head>
 <body>
-
+<h4>What do you want to do with your life?</h4>
+<button type="submit">Add Another Item</button>
+<button type="submit">View Closet</button>
 </body>
 </html>

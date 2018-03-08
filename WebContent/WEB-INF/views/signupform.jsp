@@ -4,9 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Sign Up Form</title>
 </head>
 <body>
-
+<h3>Join WeatherOrNot today</h3>
+	<form class="pure-form">
+	     
+        <input type="text" placeholder="First Name" required><br>
+        
+        <input type="text" placeholder="Last Name" required><br>
+        
+        <input type="email" placeholder="Email" required><br>
+        <input type="password" placeholder="Password" required><br><br>
+        <button type="submit" class="pure-button pure-button-primary">Sign Up</button>
+</form><br>
+<p>By signing up, you agree to the Terms of Service and Privacy Policy,incling Cookie Use. </p>
 </body>
 </html>

@@ -7,6 +7,33 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3>Sweaters</h3>
+<form action="">
+  <input type="text" placeholder="File Upload">
+  <input type="file" name="pic" accept="image"><br>
+  
+  </form>
+ <form>
+  <fieldset>
+  <input type="radio" name="sweater" value="Hoody"> Hoody<br>
+  <input type="radio" name="sweater" value="Sweatshirt"> Sweatshirt<br>
+  <input type="radio" name="sweater" value="Crewneck"> Crewneck<br>
+  <input type="radio" name="sweater" value="Zip-Up"> Zip-Up<br>
+  <input type="radio" name="sweater" value="Cardigan"> Cardigan<br>
+  
+  
+</fieldset>
+</form>
+
+<form action="/action_page.php" id="usrform">
+
+  <textarea name="comment" form="usrform">Add a brief item description...</textarea>
+  
+</form>
+
+
+ <button type="button AddItem-button" id="button1" >Add Item</button>
+ <button type="button Cancel-button" id="button2">Cancel</button>
 
 </body>
 </html>

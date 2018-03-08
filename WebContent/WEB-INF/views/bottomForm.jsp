@@ -7,6 +7,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3>Bottoms</h3>
+<form>
+  <fieldset>
+  <input type="radio" name="bottom" value="Pants" > Pants<br>
+  <input type="radio" name="bottom" value="Jeans"> Jeans<br>
+  <input type="radio" name="bottom" value="Shorts"> Shorts<br>
+  <input type="radio" name="bottom" value="Skirt"> Skirt<br>
+  <input type="radio" name="bottom" value="Capris"> Capris<br>
+  <input type="radio" name="bottom" value="Leggings"> Leggings<br>
+  <input type="radio" name="bottom" value="Athletic"> Athletic Bottoms<br>
+</fieldset>
+</form>
+
+<form action="/action_page.php" id="usrform">
+
+  <textarea name="comment" form="usrform">Add a brief item description...</textarea>
+  
+</form>
+
+
+ <button type="button AddItem-button" id="button1" >Add Item</button>
+ <button type="button Cancel-button" id="button2">Cancel</button>
 
 </body>
 </html>
