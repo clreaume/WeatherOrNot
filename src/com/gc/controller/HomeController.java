@@ -50,9 +50,9 @@ public class HomeController {
 	// API OBJECT - VALUES ING API CALL
 	API ourAPI = new API();
 
-	@RequestMapping("/") // THE STUFF BELOW SHOULD MOVE OUT OF THIS CONTROLLER
-	public ModelAndView index(Model model) {
-		String prodCenter = "";
+	@RequestMapping("getLoginPage")
+	public String getLogin() {
+
 		try {
 			// the HttpClient Interface represents the contract for the HTTP request
 			// execution
@@ -102,7 +102,33 @@ public class HomeController {
 			e.printStackTrace();
 		}
 
-		return new ModelAndView("index", "centerData", prodCenter);
+		return "Login";
+	}
+
+	@RequestMapping("existingUserLogin")
+	public ModelAndView loginUser(HttpSession session, @RequestParam("email") String email,
+			@RequestParam("password") String password) {
+		String pageToReturn = "Login";
+		String msg;
+
+		try {
+			User currentUser = usr.getUser(email);
+
+			if (currentUser.getPassword().equals(password)) {
+				pageToReturn = "welcome";
+				msg = currentUser.getFirstName();
+				session.setAttribute("user1", currentUser);
+			} else {
+				pageToReturn = "Login";
+				msg = "Incorrect password.";
+			}
+		}
+
+		catch (Exception e) {
+			msg = "Account with that email address not found.";
+		}
+
+		return new ModelAndView(pageToReturn, "msg", msg);
 	}
 
 	@RequestMapping("getsignup")
@@ -121,7 +147,6 @@ public class HomeController {
 		usr.createUser(tempUser);
 
 		return new ModelAndView("fillCloset", "name", firstName);
-		// TODO Add ${name} EL tag to fillCloset - "Welcome x! Let's fill your closet"
 
 	}
 
@@ -131,7 +156,7 @@ public class HomeController {
 
 		switch (itemChosen) {
 		case "top":
-			formToReturn = "topForm";
+			formToReturn = "topform";
 			break;
 		case "sweater":
 			formToReturn = "sweaterForm";
@@ -157,12 +182,12 @@ public class HomeController {
 		}
 
 		return formToReturn;
-
 	}
 
 	@RequestMapping("addItem")
 	public String addItem(@ModelAttribute("user1") User user1, @RequestParam("imageURL") String url,
-			@RequestParam("type") String type, @RequestParam("description") String desc, @RequestParam("category") Category cat) {
+			@RequestParam("type") String type, @RequestParam("description") String desc,
+			@RequestParam("category") Category cat) {
 
 		Item tempItem = new Item(false, user1.getUserId(), type, desc, url, cat);
 		itm.addItem(tempItem);
@@ -216,8 +241,7 @@ public class HomeController {
 	public ModelAndView viewHamper(@ModelAttribute("user1") User user1) {
 
 		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems(user1));
-		// TODO add ${hamperItems} EL tag to hamper page & use weird core thing to print
-		// each out...
+
 	}
 
 	@RequestMapping("putInCloset")
@@ -230,20 +254,18 @@ public class HomeController {
 		itm.changeHampStatus(tempItem);
 
 		return new ModelAndView("closet", "msg", "Your item added to closet!");
-		// TODO add ${msg} EL tag in closet.jsp - at top, above printing out of pictures
 	}
 
-	
-	
 	ArrayList<Item> predictedOutfit = new ArrayList<Item>();
+
 	@RequestMapping("home")
 	public ModelAndView getFashionCast(@ModelAttribute("user1") User user1) {
 		ArrayList<Item> allItems = itm.getAllItems(user1);
-		
+
 		Random randomGenerator;
 		randomGenerator = new Random();
-		
-//ACCESSORIES
+
+		// ACCESSORIES
 		// IF PRECIPITATION
 		if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
 			// GRAB UMBRELLA
@@ -255,13 +277,13 @@ public class HomeController {
 			}
 		}
 
-//HOT		
+		// HOT
 		if (ourAPI.getTemp_f() >= 80.0) {
 			ArrayList<Item> hotTops = new ArrayList<Item>();
 			ArrayList<Item> hotBottoms = new ArrayList<Item>();
 			ArrayList<Item> hotShoes = new ArrayList<Item>();
-			
-//SET SHOES			
+
+			// SET SHOES
 			// IF PRECIPITATION
 			if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
 				// SHOES MUST BE WATERPROOF
@@ -284,10 +306,10 @@ public class HomeController {
 					}
 				}
 			}
-//SET OUTFIT
+			// SET OUTFIT
 			for (Item item : allItems) {
 				// TOP MUST BE TANK TOP OR T-SHIRT
-				if (item.getType().equals("tank top")) {
+				if (item.getType().equals("tankTop")) {
 					hotTops.add(item);
 				} else if (item.getType().equals("tshirt")) {
 					hotTops.add(item);
@@ -315,12 +337,12 @@ public class HomeController {
 
 		}
 
-//WARM
+		// WARM
 		else if (ourAPI.getTemp_f() >= 70.0) {
 			ArrayList<Item> warmTops = new ArrayList<Item>();
 			ArrayList<Item> warmBottoms = new ArrayList<Item>();
 			ArrayList<Item> warmShoes = new ArrayList<Item>();
-//SET SHOES
+			// SET SHOES
 			// IF PRECIPITATION
 			if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
 				// SHOES MUST BE WATERPROOF
@@ -343,7 +365,7 @@ public class HomeController {
 					}
 				}
 			}
-//SET OUTFIT
+			// SET OUTFIT
 			for (Item item : allItems) {
 				// TOP MUST BE TSHIRT
 				if (item.getType().equals("tshirt")) {
@@ -374,14 +396,14 @@ public class HomeController {
 
 		}
 
-//MILD	
+		// MILD
 		else if (ourAPI.getTemp_f() >= 60.0) {
 			ArrayList<Item> mildTops = new ArrayList<Item>();
 			ArrayList<Item> mildBottoms = new ArrayList<Item>();
 			ArrayList<Item> mildShoes = new ArrayList<Item>();
 			ArrayList<Item> mildLayers = new ArrayList<Item>();
-			
-//SET SHOES
+
+			// SET SHOES
 			// IF PRECIPITATION
 			if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
 				// SHOES MUST BE WATERPROOF
@@ -402,7 +424,7 @@ public class HomeController {
 					}
 				}
 			}
-//SET OUTFIT
+			// SET OUTFIT
 			for (Item item : allItems) {
 				// TOP MUST BE TSHIRT (WITH LAYER)
 				if (item.getType().equals("tshirt")) {
@@ -418,14 +440,14 @@ public class HomeController {
 				} else if (item.getType().equals("leggings")) {
 					mildBottoms.add(item);
 				}
-				
+
 				// LAYER MUST BE ZIP UP OR CARDIGAN (?)
 				else if (item.getType().equals("zipUp")) {
 					mildLayers.add(item);
 				} else if (item.getType().equals("cardigan")) {
 					mildLayers.add(item);
 				}
-				
+
 			}
 
 			int index = randomGenerator.nextInt(mildTops.size());
@@ -439,21 +461,21 @@ public class HomeController {
 			index = randomGenerator.nextInt(mildShoes.size());
 			Item mildShoesPick = mildShoes.get(index);
 			predictedOutfit.add(mildShoesPick);
-			
+
 			index = randomGenerator.nextInt(mildLayers.size());
 			Item mildLayerPick = mildLayers.get(index);
 			predictedOutfit.add(mildLayerPick);
 
 		}
 
-//CRISP
+		// CRISP
 		else if (ourAPI.getTemp_f() >= 50.0) {
 			ArrayList<Item> crispTops = new ArrayList<Item>();
 			ArrayList<Item> crispBottoms = new ArrayList<Item>();
 			ArrayList<Item> crispShoes = new ArrayList<Item>();
 			ArrayList<Item> crispOuterwear = new ArrayList<>();
 
-//SET SHOES
+			// SET SHOES
 			// IF PRECIPITATION
 			if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
 				// SHOES MUST BE WATERPROOF
@@ -474,7 +496,7 @@ public class HomeController {
 					}
 				}
 			}
-//SET OUTFIT
+			// SET OUTFIT
 			for (Item item : allItems) {
 				// TOP MUST BE TSHIRT (WILL HAVE OUTERWEAR)
 				// ANY OTHER TOPS HERE?
@@ -518,19 +540,18 @@ public class HomeController {
 			Item crispOuterwearPick = crispOuterwear.get(index);
 			predictedOutfit.add(crispOuterwearPick);
 
-
 			// NO LAYER AT THIS TEMP?
 
 		}
 
-//COOL
+		// COOL
 		else if (ourAPI.getTemp_f() >= 40.0) {
 			ArrayList<Item> coolTops = new ArrayList<Item>();
 			ArrayList<Item> coolBottoms = new ArrayList<Item>();
 			ArrayList<Item> coolShoes = new ArrayList<Item>();
 			ArrayList<Item> coolLayer = new ArrayList<Item>();
 			ArrayList<Item> coolOuterwear = new ArrayList<Item>();
-//SET SHOES
+			// SET SHOES
 			// IF PRECIPITATION
 			if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
 				// SHOES MUST BE WATERPROOF
@@ -549,7 +570,7 @@ public class HomeController {
 					}
 				}
 			}
-//SET OUTFIT
+			// SET OUTFIT
 			for (Item item : allItems) {
 				// TOP MUST BE TSHIRT (WITH LAYER)
 				// ANY OTHER TOPS HERE?
@@ -596,17 +617,16 @@ public class HomeController {
 			Item coolOuterwearPick = coolOuterwear.get(index);
 			predictedOutfit.add(coolOuterwearPick);
 
-
 		}
 
-//COLD
+		// COLD
 		else if (ourAPI.getTemp_f() >= 30.0) {
 			ArrayList<Item> coldTops = new ArrayList<Item>();
 			ArrayList<Item> coldBottoms = new ArrayList<Item>();
 			ArrayList<Item> coldShoes = new ArrayList<Item>();
 			ArrayList<Item> coldLayer = new ArrayList<Item>();
 			ArrayList<Item> coldOuterwear = new ArrayList<Item>();
-//GET SHOES
+			// GET SHOES
 			// IF PRECIPITATION
 			if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
 				// SHOES MUST BE WATERPROOF
@@ -625,7 +645,7 @@ public class HomeController {
 					}
 				}
 			}
-//GET OUTFIT
+			// GET OUTFIT
 			for (Item item : allItems) {
 				// TOP MUST BE TSHIRT (WITH LAYER)
 				// WHAT OTHER SHIRTS SHOULD GO HERE?
@@ -680,17 +700,16 @@ public class HomeController {
 			Item coldOuterwearPick = coldOuterwear.get(index);
 			predictedOutfit.add(coldOuterwearPick);
 
-
 		}
 
-//FREEZING AND BEYOND
+		// FREEZING AND BEYOND
 		else if (ourAPI.getTemp_f() < 30.0) {
 			ArrayList<Item> freezingTops = new ArrayList<Item>();
 			ArrayList<Item> freezingBottoms = new ArrayList<Item>();
 			ArrayList<Item> freezingShoes = new ArrayList<Item>();
 			ArrayList<Item> freezingLayer = new ArrayList<Item>();
 			ArrayList<Item> freezingOuterwear = new ArrayList<Item>();
-//GET SHOES
+			// GET SHOES
 			// IF PRECIPITATION
 			if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
 				// SHOES MUST BE WATERPROOF
@@ -709,7 +728,7 @@ public class HomeController {
 					}
 				}
 			}
-//GET OUTFIT
+			// GET OUTFIT
 			for (Item item : allItems) {
 				// TOP MUST BE TSHIRT (WITH LAYER)
 				// WHAT OTHER SHIRTS SHOULD GO HERE?
@@ -741,7 +760,7 @@ public class HomeController {
 					freezingOuterwear.add(item);
 				}
 			}
-			
+
 			int index = randomGenerator.nextInt(freezingTops.size());
 			Item freezingTopPick = freezingTops.get(index);
 			predictedOutfit.add(freezingTopPick);
@@ -762,12 +781,12 @@ public class HomeController {
 			Item freezingOuterwearPick = freezingOuterwear.get(index);
 			predictedOutfit.add(freezingOuterwearPick);
 
-
 		}
 
 		return new ModelAndView("fashionCast", "outfitItems", predictedOutfit);
-		
-		//TODO ADD ${outfitItems} EL tag in fashionCast file and weird core tags to loop through/display all photos
+
+		// TODO ADD ${outfitItems} EL tag in fashionCast file and weird core tags to
+		// loop through/display all photos
 	}
 
 	@RequestMapping("baseOutfitSelected")
@@ -775,34 +794,30 @@ public class HomeController {
 		boolean hasLayer = false;
 		boolean hasOuterwear = false;
 		boolean hasAccessory = false;
-		
+
 		String nextPage;
-		
+
 		for (Item item : predictedOutfit) {
-			if (item.getCat().equals("SWEATER")){
+			if (item.getCat().equals("SWEATER")) {
 				hasLayer = true;
 			}
-			if(item.getCat().equals("OUTERWEAR")) {
+			if (item.getCat().equals("OUTERWEAR")) {
 				hasOuterwear = true;
 			}
-			if(item.getCat().equals("ACCESSORY")) {
+			if (item.getCat().equals("ACCESSORY")) {
 				hasAccessory = true;
 			}
 		}
-		
-		if(hasLayer) {
+
+		if (hasLayer) {
 			nextPage = "addLayer";
-		}
-		else if(hasOuterwear) {
+		} else if (hasOuterwear) {
 			nextPage = "addOuterwear";
-		}
-		else if (hasAccessory) {
+		} else if (hasAccessory) {
 			nextPage = "addAccessory";
-		}
-		else {
+		} else {
 			nextPage = "readyToGo";
 		}
-		
 
 		return new ModelAndView(nextPage, "", "something here");
 	}

@@ -6,4 +6,6 @@ public interface DAOUser {
 
 	abstract void updateUser(User user);
 	
+	abstract User getUser(String email);
+	
 }

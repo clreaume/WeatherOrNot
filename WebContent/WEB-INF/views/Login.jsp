@@ -11,10 +11,13 @@
 <p>When you are getting ready always listen to your Mother....<br>
             ....Mother Nature
 </p>
-<form action=" "> 
-        <input type="email" placeholder="E-mail" id="E-mail" required><br>
-        <input type="password" placeholder="Password" id="password" required><br><br>
-        <button type="submit" class="pure-button pure-button-primary">Continue</button>
+
+${msg}
+
+<form action="existingUserLogin"> 
+        <input type="email" placeholder="E-mail" name = "email" required><br>
+        <input type="password" placeholder="Password" name="password" required><br><br>
+        <button type="submit" >Continue</button>
 </form><br>
 <h3>New To WeatherOrNot?</h3><br>
 <form action="getsignup">
