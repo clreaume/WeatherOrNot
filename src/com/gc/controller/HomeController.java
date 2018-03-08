@@ -136,7 +136,7 @@ public class HomeController {
 		return "signupform";
 	}
 
-	@RequestMapping("createuser")
+	@RequestMapping("createUser")
 	public ModelAndView createUser(HttpSession session, @RequestParam("fname") String firstName,
 			@RequestParam("lname") String lastName, @RequestParam("email") String email,
 			@RequestParam("password") String password) {
