@@ -99,6 +99,19 @@
 			<version>1.19</version>
 		</dependency>
 
+        <!-- Apache Commons FileUpload, for file uploading -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
+        <!-- Apache Commons IO for file uploading-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
 
 		<!--remember: the following two may need to be flipped if you see red when -->
 		<!--you attempt to import -->
