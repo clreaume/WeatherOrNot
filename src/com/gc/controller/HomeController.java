@@ -174,9 +174,9 @@ public class HomeController {
 	}
 
 	@RequestMapping("viewCloset")
-	public ModelAndView viewCloset() {
+	public ModelAndView viewCloset(@ModelAttribute("user1") User user1) {
 
-		ArrayList<Item> userCloset = itm.getAllItems();
+		ArrayList<Item> userCloset = itm.getAllItems(user1);
 
 		return new ModelAndView("closet", "clothes", userCloset);
 		// TODO ADD ${clothes} EL tag in closet.jsp, with weird 'core' tags to loop
@@ -201,25 +201,25 @@ public class HomeController {
 
 	@RequestMapping("putInHamp")
 	// THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
-	public ModelAndView putInHamp(@RequestParam("id") String id) {
+	public ModelAndView putInHamp(@RequestParam("id") String id, @ModelAttribute("user1") User user1) {
 		Item tempItem = new Item();
 		tempItem.setItemId(id);
 
 		itm.changeHampStatus(tempItem);
 
-		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems());
+		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems(user1));
 	}
 
 	@RequestMapping("viewHamp")
-	public ModelAndView viewHamper() {
+	public ModelAndView viewHamper(@ModelAttribute("user1") User user1) {
 
-		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems());
+		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems(user1));
 		// TODO add ${hamperItems} EL tag to hamper page & use weird core thing to print
 		// each out...
 	}
 
 	@RequestMapping("putInCloset")
-	// THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
+	// THIS 'ID' PARAM SNE AKILY PASSED IN FROM FORM USING ~URL ENCODING~
 	public ModelAndView putInCloset(@RequestParam("id") String id) {
 
 		Item tempItem = new Item();
@@ -241,7 +241,7 @@ public class HomeController {
 
 
 	@RequestMapping("home")
-	public ModelAndView getFashionCast() {
+	public ModelAndView getFashionCast(@ModelAttribute("user1") User user1) {
 		Random randomGenerator;
 		randomGenerator = new Random();
 
@@ -253,7 +253,7 @@ public class HomeController {
 
 		// if rain - add umbrella to predicted outfit
 		if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0 && ourAPI.getTemp_f() >= 34.0) {
-			ArrayList<Item> allItems = itm.getAllItems();
+			ArrayList<Item> allItems = itm.getAllItems(user1);
 
 			for (Item item : allItems) {
 				if (item.getType().equals("umbrella")) {
@@ -268,7 +268,7 @@ public class HomeController {
 		else if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0 && ourAPI.getTemp_f() < 34.0) {
 			
 			ArrayList<Item> winterCoats = new ArrayList<Item>();
-			ArrayList<Item> allItems = itm.getAllItems();
+			ArrayList<Item> allItems = itm.getAllItems(user1);
 
 			for (Item item : allItems) {
 				if (item.getType().equals("winter coat")) {
@@ -287,7 +287,7 @@ public class HomeController {
 		// SET BASE OUTFIT FOR 80 DEGREES AND UP
 		if (ourAPI.getTemp_f() >= 80.0) {
 			// get top
-			ArrayList<Item> allItems = itm.getAllItems();
+			ArrayList<Item> allItems = itm.getAllItems(user1);
 
 			tankTops = null;
 			shorts = null;

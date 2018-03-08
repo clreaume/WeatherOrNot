@@ -24,17 +24,14 @@ public class DAOItemImpl implements DAOItem {
 	}
 
 	@Override
-	public ArrayList<Item> getAllItems() {
+	public ArrayList<Item> getAllItems(User user1) {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		
 		
 		Criteria crit = session.createCriteria(Item.class);
-		
-		//TODO create restriction to only get item objects back that BELONG TO THIS USER
-		//crit.add(Restrictions.eq("userID", user1.getUserID()));
-		
+		crit.add(Restrictions.eq("userID", user1.getUserId()));
 		
 		ArrayList<Item> itemList = (ArrayList<Item>) crit.list();
 		System.out.println(itemList.size());
@@ -93,13 +90,15 @@ public class DAOItemImpl implements DAOItem {
 	
 	
 	@Override
-	public ArrayList<Item> getHamperItems(){
+	public ArrayList<Item> getHamperItems(User user1){
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		
 		Criteria crit = session.createCriteria(Item.class);
+		crit.add(Restrictions.eq("userID", user1.getUserId()));
 		crit.add(Restrictions.eq("inHamp", true));
+		
 		
 		ArrayList<Item> hamperItemList = (ArrayList<Item>) crit.list();
 		

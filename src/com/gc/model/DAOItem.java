@@ -6,7 +6,7 @@ public interface DAOItem {
 	
 	void addItem(Item item);
 	
-	ArrayList<Item> getAllItems();
+	ArrayList<Item> getAllItems(User user);
 	
 	void deleteItem(Item item);
 	
@@ -14,6 +14,6 @@ public interface DAOItem {
 	
 	void changeHampStatus(Item item);
 	
-	ArrayList<Item> getHamperItems();
+	ArrayList<Item> getHamperItems(User user);
 
 }
