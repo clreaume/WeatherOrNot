@@ -9,12 +9,13 @@ import javax.persistence.Table;
 @Entity 
 @Table(name = "Item")
 
+
 public class Item {
 
 	private boolean inHamper;
 	private int userId;
 	private String type;
-	private enum category{TOP, BOTTOM, DRESS, SHOES, SWEATER, OUTERWEAR, ACCESSORIES};
+	private Category cat;
 	private String description;
 	private String imageURL;
 	private String itemId;
@@ -24,16 +25,16 @@ public class Item {
 	}
 	
 	//itemID removed from below constructor since it's auto-generated
-	public Item(boolean inHamper, int userId, String type, String description, String imageURL) {
+	public Item(boolean inHamper, int userId, String type, String description, String imageURL, Category cat) {
 		super();
 		this.inHamper = inHamper;
 		this.userId = userId;
 		this.type = type;
 		this.description = description;
 		this.imageURL = imageURL;
+		this.cat = cat;
 	}
 	
-	//CR: Why is there no getter/setter for category?
 	
 	@Column
 	public boolean isInHamper() {
@@ -83,6 +84,15 @@ public class Item {
 	}
 	public void setItemId(String itemId) {
 		this.itemId = itemId;
+	}
+	
+	@Column
+	public Category getCat() {
+		return cat;
+	}
+
+	public void setCat(Category cat) {
+		this.cat = cat;
 	}
 	
 	
