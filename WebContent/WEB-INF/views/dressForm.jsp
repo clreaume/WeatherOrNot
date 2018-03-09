@@ -8,14 +8,14 @@
 </head>
 <body>
 <h3>Dress</h3>
-<form action="addItem">
-  <input type="text" placeholder="File Upload" >
-  <input type="file" name="pic" accept="image" name = "imageURL"><br><br>
+<form action="addItem" method="post" enctype="multipart/form-data">
+  <input type="text" placeholder="File Upload">
+  <input type="file" accept="image" name =	"imageURL"><br><br>
   <input type="text" placeholder="Give the Item name">
 
   
   <input type="radio" name="type" value="maxi">Maxi<br>
-  <input type="radio" name=type" value ="fancy">Fancy<br>
+  <input type="radio" name="type" value ="fancy">Fancy<br>
   <input type="radio" name="type" value="party">Party<br>
   <input type="radio" name="type" value="mindy">Mindy<br>
   <input type="radio" name="type" value="flare">Flare<br>
@@ -29,8 +29,7 @@
 <button type="submit">Add Item</button>
 <button type="submit">Cancel</button>
 
-
-
 </form>
+
 </body>
 </html>

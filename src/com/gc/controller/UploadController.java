@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.gc.model.Category;
 import com.gc.model.Item;
 
 /**
@@ -42,9 +43,11 @@ public class UploadController {
 	 * This method creates a new images directory if it doesn't already exist
 	 *
 	 */
-	private boolean createDirectory(String path) {
+	private static boolean createDirectory(String path) {
+		
 		// define the directory
 		File directory = new File(path);
+		System.out.println(directory.isAbsolute());
 		// If the directory doesn't exist it is created
 		if (!directory.exists()) {
 			System.out.println(directory.getName() + " directory doesn't exist.  Creating directory...");
@@ -68,7 +71,7 @@ public class UploadController {
 	 * @param filename String of filename to save
 	 * @return boolean true if save successfully, false otherwise
 	 */
-	private boolean saveImageToDirectory(byte[] file, String path, String filename) {
+	public static boolean saveImageToDirectory(byte[] file, String path, String filename) {
 		// Create a new directory, if creation fails, show error page
 		if (!createDirectory(path)) {
 			return false;
@@ -111,19 +114,18 @@ public class UploadController {
 			
 		return "preview-upload";
 	}
-	@RequestMapping(value="dressForm", method=RequestMethod.GET)
-	public String dressForm() {
-		return "dressForm";
-	}
+	
 	
 	
 	@RequestMapping(value="upload", method=RequestMethod.POST)
-	public String uploadPhoto(@RequestParam("pic")MultipartFile file) {
-		String fileName = file.getOriginalFilename();
+	public String uploadPhoto(@RequestParam("imageURL") MultipartFile file) {
+		//public String uploadPhoto(@RequestParam("imageURL") String file) {		
+		//String fileName = file.getOriginalFilename();
 		//encodedFileName = Base64.getEncoder().encodeToString(fileName.getBytes());
-		String encodedFileName =  PIC_PATH + fileName;
+		//String encodedFileName =  PIC_PATH + fileName;
 		
-		System.out.println(encodedFileName);
+		System.out.println(file.getOriginalFilename());
+	
 		//Define the file path and name
 		
 		
@@ -132,4 +134,5 @@ public class UploadController {
 		return "itemAdded";
 	}
 	
+	//file:///users/saclauw/Desktop/Program/Eclipse.app/Contents/MacOS/resources/IMG_1086.jpg
 }

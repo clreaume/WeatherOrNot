@@ -71,12 +71,12 @@ public class DAOItemImpl implements DAOItem {
 	@Override
 	public void changeHampStatus(Item item){
 		
-		if (item.isInHamper()) {
-			item.setInHamper(false);
+		if (item.getInHamp() == InHamp.T) {
+			item.setInHamp(InHamp.F);
 		}
 		
 		else {
-			item.setInHamper(true);
+			item.setInHamp(InHamp.T);
 		}
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
