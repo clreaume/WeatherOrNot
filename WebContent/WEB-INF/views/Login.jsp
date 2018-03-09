@@ -17,7 +17,7 @@ ${msg}
 <form action="existingUserLogin"> 
         <input type="email" placeholder="E-mail" name = "email" required><br>
         <input type="password" placeholder="Password" name="password" required><br><br>
-        <button type="submit" >Continue</button>
+        <input type="submit" value = "Continue">
 </form><br>
 <h3>New To WeatherOrNot?</h3><br>
 <form action="getsignup">
