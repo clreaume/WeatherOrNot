@@ -31,7 +31,7 @@ public class DAOItemImpl implements DAOItem {
 		
 		
 		Criteria crit = session.createCriteria(Item.class);
-		crit.add(Restrictions.eq("userID", user1.getUserId()));
+		crit.add(Restrictions.eq("userId", user1.getUserId()));
 		
 		ArrayList<Item> itemList = (ArrayList<Item>) crit.list();
 		System.out.println(itemList.size());
@@ -71,12 +71,12 @@ public class DAOItemImpl implements DAOItem {
 	@Override
 	public void changeHampStatus(Item item){
 		
-		if (item.getInHamp() == InHamp.T) {
-			item.setInHamp(InHamp.F);
+		if (item.getInHamp().equals("T")){
+			item.setInHamp("F");
 		}
 		
 		else {
-			item.setInHamp(InHamp.T);
+			item.setInHamp("T");
 		}
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -97,7 +97,7 @@ public class DAOItemImpl implements DAOItem {
 		
 		Criteria crit = session.createCriteria(Item.class);
 		crit.add(Restrictions.eq("userID", user1.getUserId()));
-		crit.add(Restrictions.eq("inHamp", true));
+		crit.add(Restrictions.eq("inHamp", "T"));
 		
 		
 		ArrayList<Item> hamperItemList = (ArrayList<Item>) crit.list();

@@ -8,9 +8,9 @@
 </head>
 <body>
 <h3>Shoes</h3>
-<form action="addItem">
+<form action="addItem" method="post" enctype="multipart/form-data">
   <input type="text" placeholder="File Upload" >
-  <input type="file" name="pic" accept="image" name = "imageURL"><br><br><br>
+  <input type="file" accept="image" name = "imageURL"><br><br><br>
   
   <input type="radio" name="type" value="sneakers">Sneaker<br>
   <input type="radio" name="type" value="boots">Boots<br>

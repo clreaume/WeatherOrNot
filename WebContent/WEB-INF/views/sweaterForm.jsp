@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>Sweaters</h3>
-<form action="addItem">
+<form action="addItem" method="post" enctype="multipart/form-data">
   <input type="text" placeholder="File Upload">
   <input type="file" name="imageURL" accept="image"><br>
   <fieldset>
