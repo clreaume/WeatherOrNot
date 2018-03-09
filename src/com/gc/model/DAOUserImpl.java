@@ -46,7 +46,7 @@ public class DAOUserImpl implements DAOUser {
 		Criteria crit = session.createCriteria(User.class);
 		crit.add(Restrictions.eq("email", email));
 		
-		User userWithThisEmail = (User) crit.list();
+		User userWithThisEmail = (User) crit.uniqueResult();
 		
 		tx.commit();
 		session.close();

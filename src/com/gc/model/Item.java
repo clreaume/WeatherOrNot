@@ -1,5 +1,7 @@
 package com.gc.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +12,12 @@ import javax.persistence.Table;
 @Table(name = "Item")
 
 
-public class Item {
+public class Item implements Serializable {
 
-	private InHamp inHamper;
+	private String inHamper;
 	private int userId;
 	private String type;
-	private Category cat;
+	private String cat;
 	private String description;
 	private String imageURL;
 	private String itemId;
@@ -25,7 +27,7 @@ public class Item {
 	}
 	
 	//itemID removed from below constructor since it's auto-generated
-	public Item(InHamp inHamper, int userId, String type, String description, String imageURL, Category cat) {
+	public Item(String inHamper, int userId, String type, String description, String imageURL, String cat) {
 		super();
 		this.inHamper = inHamper;
 		this.userId = userId;
@@ -37,10 +39,10 @@ public class Item {
 	
 	
 	@Column
-	public InHamp getInHamp() {
+	public String getInHamp() {
 		return inHamper;
 	}
-	public void setInHamp(InHamp inHamper) {
+	public void setInHamp(String inHamper) {
 		this.inHamper = inHamper;
 	}
 
@@ -86,12 +88,14 @@ public class Item {
 		this.itemId = itemId;
 	}
 	
+	//@Column(columnDefinition = "enum(TOP, BOTTOM, DRESS, SHOES, SWEATER, OUTERWEAR, ACCESSORY)")
+	//@Enumerated(EnumType.STRING)
 	@Column
-	public Category getCategory() {
+	public String getCategory() {
 		return cat;
 	}
 
-	public void setCategory(Category cat) {
+	public void setCategory(String cat) {
 		this.cat = cat;
 	}
 	
