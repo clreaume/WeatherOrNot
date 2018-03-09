@@ -108,11 +108,16 @@ public class HomeController {
 	@RequestMapping("existingUserLogin")
 	public ModelAndView loginUser(HttpSession session, @RequestParam("email") String email,
 			@RequestParam("password") String password) {
+		
+		System.out.println("existingUserLogin called");
+		
 		String pageToReturn = "Login";
 		String msg;
 
 		try {
 			User currentUser = usr.getUser(email);
+			
+			System.out.println(currentUser);
 
 			if (currentUser.getPassword().equals(password)) {
 				pageToReturn = "welcome";
