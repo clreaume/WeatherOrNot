@@ -11,6 +11,7 @@
 <form action="addItem">
   <input type="text" placeholder="File Upload">
   <input type="file" name="pic" accept="image" name ="imageURL"><br><br><br>
+  
   <input type="radio" name="type" value="tshirt">T-shirt<br>
   <input type="radio" name="type" value="blouse">Blouse<br>
   <input type="radio" name="type" value="buttonDown">Bottom-down<br>

@@ -19,7 +19,7 @@ table border="1">
 				<td>${ myVar.type}</td>
 				<td>${ myVar.description}</td>
 				<td><a href ="deleteItem?id=${myVar.itemID}">Delete</a></td> <!-- THIS IS URL ENCODING -->
-				<td><a href ="putInHamp?id=${myVar.itemID}">Put In Hamp</a></td> <!-- can use ampersand (maybe two?) to add more params to pass in -->
+				<td><a href ="putInHamp?id=${myVar.itemID}">Put In Hamper</a></td> <!-- can use ampersand (maybe two?) to add more params to pass in -->
 			</tr>
 
 

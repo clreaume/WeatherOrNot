@@ -14,12 +14,12 @@
   <input type="text" placeholder="Give the Item name">
 
   
-  <input type="radio" name="type1" value="maxi">Maxi<br>
-  <input type="radio" name="type1" value ="fancy">Fancy<br>
-  <input type="radio" name="type1" value="party">Party<br>
-  <input type="radio" name="type1" value="mindy">Mindy<br>
-  <input type="radio" name="type1" value="flare">Flare<br>
-  <input type="radio" name="type1" value="gown">Gown<br><br>
+  <input type="radio" name="type" value="maxi">Maxi<br>
+  <input type="radio" name="type" value ="fancy">Fancy<br>
+  <input type="radio" name="type" value="party">Party<br>
+  <input type="radio" name="type" value="mindy">Mindy<br>
+  <input type="radio" name="type" value="flare">Flare<br>
+  <input type="radio" name="type" value="gown">Gown<br><br>
   <input type = "hidden" name ="category" value = "DRESS">
   
   
