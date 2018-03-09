@@ -123,7 +123,10 @@ public class HomeController {
 
 		try {
 			User currentUser = usr.getUser(email);
+<<<<<<< HEAD
 			
+=======
+>>>>>>> 12998df4950d67855b9b195236221ff1710590c7
 			System.out.println(currentUser);
 
 			if (currentUser.getPassword().equals(password)) {
@@ -161,6 +164,11 @@ public class HomeController {
 		return new ModelAndView("fillCloset", "name", firstName);
 
 	}
+	
+	@RequestMapping("addToCloset")
+	public String giveFillClosetPage() {
+		return "fillCloset";
+	}
 
 	@RequestMapping("getItemInputForm")
 	public String getItemInputForm(@RequestParam("itemOfClothing") String itemChosen) {
@@ -180,7 +188,7 @@ public class HomeController {
 			formToReturn = "bottomForm";
 			break;
 		case "dress":
-			formToReturn = "e";
+			formToReturn = "dressForm";
 			break;
 		case "shoe":
 			formToReturn = "shoeForm";
@@ -203,8 +211,8 @@ public class HomeController {
 	
 	@RequestMapping(value="addItem", method=RequestMethod.POST)
 	//public String addItem(@ModelAttribute("user1") User user1, @RequestParam("imageURL")MultipartFile file,
-	public String addItem(@RequestParam("imageURL") MultipartFile file,
-			@RequestParam("type") String type, @RequestParam("description") String desc, @RequestParam("category") Category cat) {
+	public String addItem(@ModelAttribute("user1") User user1, @RequestParam("imageURL") MultipartFile file,
+			@RequestParam("type") String type, @RequestParam("description") String desc, @RequestParam("category") String cat) {
 
 		String fileName = file.getOriginalFilename();
 		//encodedFileName = Base64.getEncoder().encodeToString(fileName.getBytes());
@@ -224,7 +232,8 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		
-		Item tempItem = new Item(InHamp.F , 1, type, desc, url, cat);
+		Item tempItem = new Item("F", user1.getUserId(), type, desc, url, cat);
+		System.out.println(tempItem.getCategory());
 
 		itm.addItem(tempItem);
 		
@@ -251,16 +260,16 @@ public class HomeController {
 	// but...
 	@RequestMapping("deleteItem")
 	// THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
-	public ModelAndView deleteItem(@RequestParam("id") String id) {
+	public ModelAndView deleteItem(@RequestParam("id") String id, @ModelAttribute("user1") User user1) {
 
 		Item tempItem = new Item();
 		tempItem.setItemId(id);
 
 		itm.deleteItem(tempItem);
+		
+		ArrayList<Item> userCloset = itm.getAllItems(user1);
 
-		return new ModelAndView("closet", "msg",
-				"Your " + tempItem.getType() + "has been deleted. Your updated closet: ");
-		// TODO add ${msg} EL tag in closet.jsp - at top, above printing out of pictures
+		return new ModelAndView("closet", "clothes", userCloset);
 	}
 
 	@RequestMapping("putInHamp")
