@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 public class Item {
 
-	private boolean inHamper;
+	private InHamp inHamper;
 	private int userId;
 	private String type;
 	private Category cat;
@@ -25,7 +25,7 @@ public class Item {
 	}
 	
 	//itemID removed from below constructor since it's auto-generated
-	public Item(boolean inHamper, int userId, String type, String description, String imageURL, Category cat) {
+	public Item(InHamp inHamper, int userId, String type, String description, String imageURL, Category cat) {
 		super();
 		this.inHamper = inHamper;
 		this.userId = userId;
@@ -37,10 +37,10 @@ public class Item {
 	
 	
 	@Column
-	public boolean isInHamper() {
+	public InHamp getInHamp() {
 		return inHamper;
 	}
-	public void setInHamper(boolean inHamper) {
+	public void setInHamp(InHamp inHamper) {
 		this.inHamper = inHamper;
 	}
 
@@ -87,11 +87,11 @@ public class Item {
 	}
 	
 	@Column
-	public Category getCat() {
+	public Category getCategory() {
 		return cat;
 	}
 
-	public void setCat(Category cat) {
+	public void setCategory(Category cat) {
 		this.cat = cat;
 	}
 	

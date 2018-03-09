@@ -2,7 +2,7 @@ package com.gc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -19,16 +19,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.gc.model.Category;
 import com.gc.model.DAOItemImpl;
 import com.gc.model.DAOUserImpl;
+import com.gc.model.InHamp;
 import com.gc.model.Item;
 import com.gc.model.User;
 import com.gc.util.API;
+import com.gc.util.ApiCredentials;
 
 /**
  * 
@@ -42,6 +48,7 @@ import com.gc.util.API;
 @SessionAttributes("user1")
 public class HomeController {
 
+	private static final String PIC_PATH = "resources/";
 	// DAO USER IMPLEMENTATION OBJECT
 	DAOUserImpl usr = new DAOUserImpl();
 	// DAO ITEM IMPLEMENTATION OBJECT
@@ -160,12 +167,37 @@ public class HomeController {
 
 	}
 
-	@RequestMapping("addItem")
-	public String addItem(@ModelAttribute("user1") User user1, @RequestParam("imageURL") String url,
-			@RequestParam("type") String type, @RequestParam("description") String desc, @RequestParam("category") Category cat) {
+	@RequestMapping(value="dressForm", method=RequestMethod.GET)
+	public String dressForm() {
+		return "dressForm";
+	}
+	
+	@RequestMapping(value="addItem", method=RequestMethod.POST)
+	//public String addItem(@ModelAttribute("user1") User user1, @RequestParam("imageURL")MultipartFile file,
+	public String addItem(@RequestParam("imageURL") MultipartFile file,
+			@RequestParam("type1") String type, @RequestParam("description") String desc, @RequestParam("category") Category cat) {
 
-		Item tempItem = new Item(false, user1.getUserId(), type, desc, url, cat);
+		String fileName = file.getOriginalFilename();
+		//encodedFileName = Base64.getEncoder().encodeToString(fileName.getBytes());
+		String url = null;
+
+		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+				  "cloud_name", ApiCredentials.CLOUDNAME,
+				  "api_key", ApiCredentials.APIKEY,
+				  "api_secret", ApiCredentials.APISECRET));
+		
+		try {
+			Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+			url = (String) uploadResult.get("url");
+			System.out.println(uploadResult.get("url"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Item tempItem = new Item(InHamp.F , 1, type, desc, url, cat);
 		itm.addItem(tempItem);
+		
 
 		return "itemAdded";
 	}
@@ -779,13 +811,13 @@ public class HomeController {
 		String nextPage;
 		
 		for (Item item : predictedOutfit) {
-			if (item.getCat().equals("SWEATER")){
+			if (item.getCategory().equals("SWEATER")){
 				hasLayer = true;
 			}
-			if(item.getCat().equals("OUTERWEAR")) {
+			if(item.getCategory().equals("OUTERWEAR")) {
 				hasOuterwear = true;
 			}
-			if(item.getCat().equals("ACCESSORY")) {
+			if(item.getCategory().equals("ACCESSORY")) {
 				hasAccessory = true;
 			}
 		}
