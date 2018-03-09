@@ -289,6 +289,9 @@ public class HomeController {
 		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems(user1));
 
 	}
+	
+	//WE CAN CREATE NEW USER, LOGIN EXISTING USER, ADD ITEM, DELETE ITEM, VIEW CLOSET
+	//NOT GET OUTFIT
 
 	@RequestMapping("putInCloset")
 	// THIS 'ID' PARAM SNE AKILY PASSED IN FROM FORM USING ~URL ENCODING~
