@@ -9,7 +9,7 @@
 <body>
 
 <h3>Join WeatherOrNot today</h3>
-	<form action = "createUser">
+	<form action = "createUser" method="post">
 	     
         <input type="text" placeholder="First Name" name="fname" required><br>
         
