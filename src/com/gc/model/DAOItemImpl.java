@@ -40,6 +40,22 @@ public class DAOItemImpl implements DAOItem {
 		session.close();
 		return itemList;
 	}
+	
+	@Override
+	public Item getItem(int itemId) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria crit = session.createCriteria(Item.class);
+		crit.add(Restrictions.eq("itemId", itemId));
+		
+		Item itemWithThisId =  (Item) crit.uniqueResult();
+		
+		tx.commit();
+		session.close();
+		return itemWithThisId;
+	}
 
 	@Override
 	public void deleteItem(Item item) {
