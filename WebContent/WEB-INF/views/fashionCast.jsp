@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +16,8 @@
 
 
 			<tr>
-				<td><img alt="" src="${myVar.imageURL}" height="100px" width="100px"></td>
+				<td><img alt="" src="${myVar.imageURL}" height="100px"
+					width="100px"></td>
 				<%-- <td>${ myVar.cat}</td> --%>
 				<td>${ myVar.type}</td>
 				<td>${ myVar.description}</td>
@@ -26,7 +27,19 @@
 		</c:forEach>
 
 	</table>
-	
+
+	<form action="home">
+		<input type="submit" value="Different Outfit">
+	</form>
+	<form action="viewCloset">
+		<input type="submit" value="View closet">
+	</form>
+
+	<form action="viewHamp">
+		<input type="submit" value="View Hamper">
+	</form>
+
+
 
 </body>
 </html>

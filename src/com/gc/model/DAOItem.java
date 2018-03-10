@@ -16,4 +16,6 @@ public interface DAOItem {
 	
 	ArrayList<Item> getHamperItems(User user);
 
+	Item getItem(int itemId);
+
 }

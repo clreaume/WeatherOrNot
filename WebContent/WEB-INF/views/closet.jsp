@@ -10,6 +10,7 @@
 </head>
 <body>
 
+<h1>${name}'s Closet</h1>
 
 	<table border="1">
 		<!-- only options for border are 1 or 0 -->
@@ -36,12 +37,14 @@
 	
 	<form action = "home">
 	<input type = "submit" value = "Get my outfit">
-	
 	</form>
 	
 	<form action = "addToCloset">
 	<input type = "submit" value = "Add item">
+	</form>
 	
+	<form action ="viewHamp">
+	<input type = "submit" value = "View Hamper">
 	</form>
 	
 </body>
