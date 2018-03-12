@@ -7,19 +7,29 @@
 <title>Fill Closet</title>
 </head>
 <body>
-<h3> Welcome ${name}! Let's fill your closet!</h3>
+<h3> Welcome ${name}!</h3>
 
 <h4>Pick a category of clothing to begin.</h4>
 <form action="getItemInputForm">
      <select name="itemOfClothing">
-         <option value="top">Tops</option>
-         <option value="sweater">Sweaters</option>
+         <option value="top">Top</option>
+         <option value="sweater">Sweater</option>
          <option value="dress">Dress</option>
-         <option value="bottom">Bottoms</option>
+         <option value="bottom">Bottom</option>
          <option value="shoe">Shoes</option>
          <option value="outerwear">Outerwear</option>
-         <option value="accessory">Accessories</option>
+         <option value="accessory">Accessory</option>
       </select><br><br><br> 
-     <button type="submit">Select Category</button>
+     <button type="submit">Select Category</button><br>
+  </form>
+  
+     	<form action="viewCloset">
+		<input type="submit" value="View closet">
+	</form>
+	
+		<form action="viewHamp">
+		<input type="submit" value="View Hamper">
+	</form>
+	
 </body>
 </html>
