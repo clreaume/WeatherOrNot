@@ -10,6 +10,7 @@ public class API {
 	private String windchill_f;
 	private String wind_gust_mph;
 	private String icon_URL;
+	private String cityState;
 	
 	
 	// the empty constructor API
@@ -19,7 +20,7 @@ public class API {
 	
 	// the overloaded constructor API
 	public API(String weather, double temp_f, String feelslike_f, String precip_today_in, String icon,
-			String relative_humidity, String windchill_f, String wind_gust_mph, String icon_URL) {
+			String relative_humidity, String windchill_f, String wind_gust_mph, String icon_URL, String cityState) {
 		//super();
 		this.weather = weather;
 		this.temp_f = temp_f;
@@ -30,6 +31,7 @@ public class API {
 		this.windchill_f = windchill_f;
 		this.wind_gust_mph = wind_gust_mph;
 		this.icon_URL = icon_URL;
+		this.cityState = cityState;
 	}
 	// the getters and setters
 
@@ -104,12 +106,21 @@ public class API {
 	public void setIcon_URL(String icon_URL) {
 		this.icon_URL = icon_URL;
 	}
+	
+	public String getCityState() {
+		return cityState;
+		
+	}
+	
+	public void setCityState(String cityState) {
+		this.cityState = cityState;
+	}
 
 	@Override
 	public String toString() {
 		return "API [weather=" + weather + ", temp_f=" + temp_f + ", feelslike_f=" + feelslike_f + ", precip_today_in="
 				+ precip_today_in + ", icon=" + icon + ", relative_humidity=" + relative_humidity + ", windchill_f="
-				+ windchill_f + ", wind_gust_mph=" + wind_gust_mph + ", icon_URL=" + icon_URL + "]";
+				+ windchill_f + ", wind_gust_mph=" + wind_gust_mph + ", icon_URL=" + icon_URL + ", full" + cityState + "]";
 	}
 	
 	

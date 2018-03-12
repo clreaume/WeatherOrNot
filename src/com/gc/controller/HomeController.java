@@ -97,6 +97,7 @@ public class HomeController {
 			ourAPI.setRelative_humidity(currentObs.getString("relative_humidity"));
 			ourAPI.setWindchill_f(currentObs.getString("windchill_f"));
 			ourAPI.setWind_gust_mph(currentObs.getString("wind_gust_mph"));
+			ourAPI.setCityState(currentObs.getJSONObject("display_location").getString("full"));
 
 			// this is a test print to our console to make sure we are communicating with
 			// the API (response code should be 200)
@@ -114,6 +115,7 @@ public class HomeController {
 	}
 
 	User currentUser;
+	
 	
 	@RequestMapping("existingUserLogin")
 	public ModelAndView loginUser( @RequestParam("email") String email,
@@ -317,13 +319,21 @@ public class HomeController {
 	ArrayList<Item> predictedOutfit = null;
 
 	@RequestMapping("home")
-	public ModelAndView getFashionCast() {
+	public ModelAndView getFashionCast(Model model, Model model1, Model model2, Model model3, Model model4, Model model5, Model model6) {
 		ArrayList<Item> allItems = itm.getAllItems(currentUser);
 		ArrayList<Item> predictedOutfit = new ArrayList<Item>();
 
 		Random randomGenerator;
 		randomGenerator = new Random();
 
+		model.addAttribute("cityState", ourAPI.getCityState());
+		model1.addAttribute("temp", ourAPI.getTemp_f());
+		model2.addAttribute("wind", ourAPI.getWind_gust_mph());
+		model3.addAttribute("precip", ourAPI.getPrecip_today_in());
+		model4.addAttribute("weather", ourAPI.getWeather());
+		model5.addAttribute("icon_url", ourAPI.getIcon_URL());
+		model6.addAttribute("humidity", ourAPI.getRelative_humidity());
+		
 		// ACCESSORIES
 		// IF PRECIPITATION
 		try {

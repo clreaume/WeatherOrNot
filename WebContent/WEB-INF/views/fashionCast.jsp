@@ -9,6 +9,14 @@
 </head>
 <body>
 
+<h2>${cityState}</h2>
+<h2>${temp} °F</h2>
+<h2>${weather}</h2>
+<h2>Wind: ${wind} mph</h2>
+<h2>Precipitation: ${precip} %</h2>
+<h2>Humidity: ${humidity}</h2>
+<img alt="pic of current weather" src="${icon_url}">
+
 	<table border="1">
 		<!-- only options for border are 1 or 0 -->
 		<c:forEach var="myVar" items="${outfitItems}">
