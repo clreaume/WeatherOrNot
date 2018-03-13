@@ -1,4 +1,4 @@
-package com.gc.model;
+ package com.gc.model;
 
 import java.io.Serializable;
 

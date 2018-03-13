@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add Outerwear</title>
+<link rel="stylesheet"
+	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+<title>Outerwear</title>
 </head>
 <body>
 <h3>Outerwear</h3>
@@ -22,7 +24,7 @@
   <input type="radio" name="type" value="leatherJacket"> Leather Jacket<br>
   <input type="radio" name="type" value="winterCoat"> Winter Coat<br>
   <input type="radio" name="type" value="furCoat"> Fur Coat<br>
-  <input type = "hidden" name ="category" value = "OUTERWEAR">
+  <input type = "hidden" name ="category" value = "OUTERWEAR"><br>
 
   <textarea name="description" placeholder="Add a brief item description..."></textarea><br>
    <button type="button AddItem-button" id="button1" >Add Item</button>

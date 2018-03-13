@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add an Accessory</title>
+<link rel="stylesheet"
+	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+<title>Accessory</title>
 </head>
 <body>
 <h3>Accessory</h3>
@@ -19,7 +21,7 @@
   <input type="radio" name="type" value="sunglasses"> Sunglasses<br>
   <input type="radio" name="type" value="gloves"> Gloves<br>
   <input type="radio" name="type" value="umbrella"> Umbrella<br>
- <input type = "hidden" name ="category" value = "ACCESSORY">
+ <input type = "hidden" name ="category" value = "ACCESSORY"> <br>
   
 
   <textarea name="description" placeholder="Add a brief item description..."></textarea><br>

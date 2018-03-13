@@ -24,7 +24,7 @@ public class DAOItemImpl implements DAOItem {
 	}
 
 	@Override
-	public ArrayList<Item> getAllItems(User user1) {
+	public ArrayList<Item> getClosetItems(User user1) {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -32,6 +32,7 @@ public class DAOItemImpl implements DAOItem {
 		
 		Criteria crit = session.createCriteria(Item.class);
 		crit.add(Restrictions.eq("userId", user1.getUserId()));
+		crit.add(Restrictions.eq("inHamp", "F"));
 		
 		ArrayList<Item> itemList = (ArrayList<Item>) crit.list();
 		System.out.println(itemList.size());
@@ -87,17 +88,17 @@ public class DAOItemImpl implements DAOItem {
 	@Override
 	public void changeHampStatus(Item item){
 		
-		if (item.getInHamp().equals("T")){
+		if (item.getInHamp().equals("T")) {
 			item.setInHamp("F");
 		}
-		
 		else {
 			item.setInHamp("T");
 		}
-		
+
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
+		
 		
 		session.update(item);
 		tx.commit();
@@ -112,7 +113,7 @@ public class DAOItemImpl implements DAOItem {
 		Transaction tx = session.beginTransaction();
 		
 		Criteria crit = session.createCriteria(Item.class);
-		crit.add(Restrictions.eq("userID", user1.getUserId()));
+		crit.add(Restrictions.eq("userId", user1.getUserId()));
 		crit.add(Restrictions.eq("inHamp", "T"));
 		
 		

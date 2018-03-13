@@ -4,10 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"
+	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
 <title>Weather Or Not</title>
 </head>
 <body>
 <h2>Welcome back ${msg}!</h2>
+<br>
+<h3>${cityState} : ${temp}°</h3> 
+<img alt="pic of current weather" src="${icon_url}">
+
 
 <form action = "home">
 <input type="submit" value="Get outfit" >

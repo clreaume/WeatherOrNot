@@ -4,14 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add a Bottom</title>
+<link rel="stylesheet"
+	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+<title>Bottom</title>
 </head>
 <body>
-<h3>Bottoms</h3>
+<h3>Bottom</h3>
 <p>Upload a photo of the item.</p>
 <form action ="addItem" method="post" enctype="multipart/form-data">
 
-  <input type="file" accept="image" name ="imageURL"><br><br><br>
+  <input type="file" accept="image" name ="imageURL"><br>
   <p>Choose the type of bottom being added to the closet:</p>
   <input type="radio" name="type" value="pants" > Pants<br>
   <input type="radio" name="type" value="jeans"> Jeans<br>
@@ -20,7 +22,7 @@
   <input type="radio" name="type" value="capris"> Capris<br>
   <input type="radio" name="type" value="leggings"> Leggings<br>
   <input type="radio" name="type" value="athletic"> Athletic Bottoms<br>
-  <input type = "hidden" name ="category" value = "BOTTOM">
+  <input type = "hidden" name ="category" value = "BOTTOM"><br>
 
   <textarea name="description" placeholder="Add a brief item description..."></textarea><br>
   

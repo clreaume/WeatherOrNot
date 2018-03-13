@@ -6,7 +6,7 @@ public interface DAOItem {
 	
 	void addItem(Item item);
 	
-	ArrayList<Item> getAllItems(User user);
+	ArrayList<Item> getClosetItems(User user);
 	
 	void deleteItem(Item item);
 	

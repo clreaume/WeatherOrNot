@@ -57,7 +57,43 @@ public class HomeController {
 
 	@RequestMapping("getLoginPage")
 	public String getLogin() {
+		return "Login";
+	}
 
+	User currentUser;
+	
+	@RequestMapping("existingUserLogin")
+	public ModelAndView loginUser( @RequestParam("email") String email,
+			@RequestParam("password") String password) {
+		
+		System.out.println("existingUserLogin called");
+		
+		String pageToReturn = "Login";
+		String msg;
+
+		try {
+			User userTryingToLogIn = usr.getUser(email);
+			System.out.println(userTryingToLogIn);
+
+			if (userTryingToLogIn.getPassword().equals(password)) {
+				pageToReturn = "askLocation";
+				msg = userTryingToLogIn.getFirstName();
+				currentUser = userTryingToLogIn;
+			} else {
+				pageToReturn = "Login";
+				msg = "Incorrect password.";
+			}
+		}
+
+		catch (Exception e) {
+			msg = "Account with that email address not found.";
+		}
+		
+		return new ModelAndView(pageToReturn, "msg", msg);
+	}
+	
+	@RequestMapping("getWelcomePage")
+	public ModelAndView getWelcome(Model model, @RequestParam("city") String city, @RequestParam("state") String state){
 		try {
 			// the HttpClient Interface represents the contract for the HTTP request
 			// execution
@@ -71,7 +107,10 @@ public class HomeController {
 
 			// HttpGet retrieves the info identified by the request url (returns as an
 			// entity)
-			HttpGet getPage = new HttpGet("/api.wunderground.com/api/83ee1eafa5306085/conditions/q/MI/Detroit.json");
+			
+			city = city.replaceAll(" ", "_");
+			
+			HttpGet getPage = new HttpGet("/api.wunderground.com/api/83ee1eafa5306085/conditions/q/" + state +"/" + city +".json");
 
 			HttpResponse resp = http.execute(host, getPage);
 
@@ -88,12 +127,97 @@ public class HomeController {
 			ourAPI.setWeather(currentObs.getString("weather"));
 			ourAPI.setIcon_URL(currentObs.getString("icon_url"));
 			ourAPI.setTemp_f(currentObs.getDouble("temp_f"));
-			ourAPI.setFeelslike_f(currentObs.getString("feelslike_f"));
 			ourAPI.setPrecip_today_in(currentObs.getString("precip_today_in"));
-			ourAPI.setIcon(currentObs.getString("icon"));
 			ourAPI.setRelative_humidity(currentObs.getString("relative_humidity"));
-			ourAPI.setWindchill_f(currentObs.getString("windchill_f"));
-			ourAPI.setWind_gust_mph(currentObs.getString("wind_gust_mph"));
+			ourAPI.setCityState(currentObs.getJSONObject("display_location").getString("full"));
+
+			// this is a test print to our console to make sure we are communicating with
+			// the API (response code should be 200)
+			System.out.println("Response code: " + resp.getStatusLine().getStatusCode());
+
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+<<<<<<< HEAD
+
+		return "Login";
+	}
+  
+	User currentUser;
+	
+	
+	@RequestMapping("existingUserLogin")
+	public ModelAndView loginUser( @RequestParam("email") String email,
+			@RequestParam("password") String password) {
+=======
+>>>>>>> 4067d36d1de23b97f8f5353824b37fd3a366be48
+		
+		
+		model.addAttribute("cityState", ourAPI.getCityState());
+		model.addAttribute("temp", ourAPI.getTemp_f());
+		model.addAttribute("icon_url", ourAPI.getIcon_URL());
+		
+		System.out.println("first name" + currentUser.getFirstName());
+			
+		return new ModelAndView("welcome", "msg", currentUser.getFirstName());
+		
+	}
+	
+
+	@RequestMapping("getsignup")
+	public String giveSignUp() {
+		return "signupform";
+	}
+
+	@RequestMapping("createUser")
+	public ModelAndView createUser(@RequestParam("fname") String firstName,
+			@RequestParam("lname") String lastName, @RequestParam("email") String email,
+			@RequestParam("password") String password, @RequestParam("city") String city, @RequestParam("state") String state) {
+
+		User tempUser = new User(firstName, lastName, email, password);
+		usr.createUser(tempUser);
+		currentUser = tempUser;
+		
+		
+		try {
+			// the HttpClient Interface represents the contract for the HTTP request
+			// execution
+			HttpClient http = HttpClientBuilder.create().build();
+
+			// HttpHost holds the variables needed for the connections
+			// default port for http is 80
+			// default port for https is 443
+
+			HttpHost host = new HttpHost("api.wunderground.com", 80, "http");
+
+			// HttpGet retrieves the info identified by the request url (returns as an
+			// entity)
+			
+			city = city.replaceAll(" ", "_");
+			
+			HttpGet getPage = new HttpGet("/api.wunderground.com/api/83ee1eafa5306085/conditions/q/" + state +"/" + city +".json");
+
+			HttpResponse resp = http.execute(host, getPage);
+
+			// casting the entity returned to a string
+			String jsonString = EntityUtils.toString(resp.getEntity());
+
+			System.out.println(jsonString);
+
+			// assign the returned result to a json object
+			JSONObject json = new JSONObject(jsonString);
+			JSONObject currentObs = json.getJSONObject("current_observation");
+
+			// SETTING OURAPI VARIABLES TO RETRIEVE LATER WITH GETTERS
+			ourAPI.setWeather(currentObs.getString("weather"));
+			ourAPI.setIcon_URL(currentObs.getString("icon_url"));
+			ourAPI.setTemp_f(currentObs.getDouble("temp_f"));
+			ourAPI.setPrecip_today_in(currentObs.getString("precip_today_in"));
+			ourAPI.setRelative_humidity(currentObs.getString("relative_humidity"));
 			ourAPI.setCityState(currentObs.getJSONObject("display_location").getString("full"));
 
 			// this is a test print to our console to make sure we are communicating with
@@ -108,62 +232,7 @@ public class HomeController {
 			e.printStackTrace();
 		}
 
-		return "Login";
-	}
-  
-	User currentUser;
-	
-	
-	@RequestMapping("existingUserLogin")
-	public ModelAndView loginUser( @RequestParam("email") String email,
-			@RequestParam("password") String password) {
-		
-		System.out.println("existingUserLogin called");
-		
-		String pageToReturn = "Login";
-		String msg;
-
-		try {
-			User userTryingToLogIn = usr.getUser(email);
-			System.out.println(userTryingToLogIn);
-
-			if (userTryingToLogIn.getPassword().equals(password)) {
-				pageToReturn = "welcome";
-				msg = userTryingToLogIn.getFirstName();
-				//session.setAttribute("user1", currentUser);
-				currentUser = userTryingToLogIn;
-			} else {
-				pageToReturn = "Login";
-				msg = "Incorrect password.";
-			}
-		}
-
-		catch (Exception e) {
-			msg = "Account with that email address not found.";
-		}
-
-		return new ModelAndView(pageToReturn, "msg", msg);
-	}
-
-	@RequestMapping("getsignup")
-	public String giveSignUp() {
-		return "signupform";
-	}
-
-	@RequestMapping("createUser")
-	public ModelAndView createUser(@RequestParam("fname") String firstName,
-			@RequestParam("lname") String lastName, @RequestParam("email") String email,
-			@RequestParam("password") String password) {
-
-		User tempUser = new User(firstName, lastName, email, password);
-		//session.setAttribute("user1", tempUser);
-
-		usr.createUser(tempUser);
-		
-		currentUser = tempUser;
-
 		return new ModelAndView("fillCloset", "name", firstName);
-
 	}
 	
 	@RequestMapping("addToCloset")
@@ -259,7 +328,7 @@ public class HomeController {
 	// but...
 	@RequestMapping("deleteItem")
 	// THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
-	public ModelAndView deleteItem(@RequestParam("id") String id, Model model) {
+	public ModelAndView deleteItem(@RequestParam("id") int id, Model model) {
 
 		Item tempItem = new Item();
 		tempItem.setItemId(id);
@@ -272,26 +341,29 @@ public class HomeController {
 
 	@RequestMapping("putInHamp")
 	// THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
-	public ModelAndView putInHamp(@RequestParam("id") int id) {
+	public ModelAndView putInHamp(@RequestParam("id") int id, Model model) {
+		
+		model.addAttribute("name", currentUser.getFirstName());
 		System.out.println(id);
 		
 		Item itemToModify;
 		itemToModify = itm.getItem(id);
 		
-		System.out.println(itemToModify);
-		System.out.println(itemToModify.getInHamp());
+		//System.out.println(itemToModify);
+		//System.out.println(itemToModify.getInHamp());
 		
 		itm.changeHampStatus(itemToModify);
-		System.out.println(itemToModify.getInHamp());
+		//System.out.println(itemToModify.getInHamp());
 
-
-		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems(currentUser));
+		return new ModelAndView("hamper", "hamperItems", Apparel.getHamperMap(itm, currentUser));
 	}
 
 	@RequestMapping("viewHamp")
-	public ModelAndView viewHamper() {
+	public ModelAndView viewHamper(Model model) {
 
-		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems(currentUser));
+		model.addAttribute("name", currentUser.getFirstName());
+		
+		return new ModelAndView("hamper", "hamperItems", Apparel.getHamperMap(itm, currentUser));
 
 	}
 	
@@ -300,14 +372,23 @@ public class HomeController {
 
 	@RequestMapping("putInCloset")
 	// THIS 'ID' PARAM SNE AKILY PASSED IN FROM FORM USING ~URL ENCODING~
-	public ModelAndView putInCloset(@RequestParam("id") String id) {
+	public ModelAndView putInCloset(@RequestParam("id") int id, Model model) {
 
-		Item tempItem = new Item();
-		tempItem.setItemId(id);
+		System.out.println(id);
+		
+		Item itemToModify;
+		itemToModify = itm.getItem(id);
+		
+		//System.out.println(itemToModify);
+		//System.out.println(itemToModify.getInHamp());
+		
+		itm.changeHampStatus(itemToModify);
+		//System.out.println(itemToModify.getInHamp());
 
-		itm.changeHampStatus(tempItem);
-
-		return new ModelAndView("closet", "msg", "Your item added to closet!");
+	
+		model.addAttribute("clothesMap", Apparel.getClosetMap(itm, currentUser));
+		
+		return new ModelAndView("closet", "name", currentUser.getFirstName());
 	}
 
 	ArrayList<Item> predictedOutfit = null;
@@ -317,7 +398,6 @@ public class HomeController {
 
 		model.addAttribute("cityState", ourAPI.getCityState());
 		model.addAttribute("temp", ourAPI.getTemp_f());
-		model.addAttribute("wind", ourAPI.getWind_gust_mph());
 		model.addAttribute("precip", ourAPI.getPrecip_today_in());
 		model.addAttribute("weather", ourAPI.getWeather());
 		model.addAttribute("icon_url", ourAPI.getIcon_URL());
