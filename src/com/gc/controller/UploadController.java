@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.gc.model.Category;
 import com.gc.model.Item;
 
 /**
- * This controller class if for photo uploads
+ * This controller class is for photo uploads
  *
  */
 @Controller

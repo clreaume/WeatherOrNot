@@ -4,27 +4,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Add an Accessory</title>
 </head>
 <body>
-<h3>Accessories</h3>
+<h3>Accessory</h3>
+<p>Upload a photo of the item.</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
   <input type="text" placeholder="File Upload">
   <input type="file" accept="image" name ="imageURL"><br>
    
- 
-  <input type="radio" name="type" value="watch"> Watch<br>
-  <input type="radio" name="type" value="bracelet"> Bracelet<br>
-  <input type="radio" name="type" value="necklace"> Necklace<br>
-  <input type="radio" name="type" value="earrings"> Earrings<br>
+ <p>Choose the type of accessory being added to the closet:</p>
   <input type="radio" name="type" value="hat"> Hat<br>
   <input type="radio" name="type" value="scarf"> Scarf<br>
   <input type="radio" name="type" value="sunglasses"> Sunglasses<br>
   <input type="radio" name="type" value="gloves"> Gloves<br>
+  <input type="radio" name="type" value="umbrella"> Umbrella<br>
  <input type = "hidden" name ="category" value = "ACCESSORY">
   
 
-  <textarea name="description" >Add a brief item description...</textarea>
+  <textarea name="description" placeholder="Add a brief item description..."></textarea><br>
   
 
  <button type="submit" >Add Item</button>

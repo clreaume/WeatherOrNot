@@ -4,25 +4,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Add a Top</title>
 </head>
 <body>
-<h3>Tops</h3>
+<h3>Top</h3>
+<p>Upload a photo of the item.</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
   <input type="text" placeholder="File Upload">
   <input type="file" accept="image" name ="imageURL"><br><br><br>
   
-  <input type="radio" name="type" value="tshirt">T-shirt<br>
-  <input type="radio" name="type" value="blouse">Blouse<br>
-  <input type="radio" name="type" value="buttonDown">Bottom-down<br>
+  <p>Choose the type of top being added to the closet:</p>
   <input type="radio" name="type" value="tankTop">Tank-top<br>
-  <input type="radio" name="type" value="collard">Collard<br>
-  <input type="radio" name="type" value="athletic">Atheltic wear<br><br>
-  <input type = "hidden" name ="category" value = "TOP">
+  <input type="radio" name="type" value="tshirt">T-shirt<br>
+  <input type="radio" name="type" value="longSleeve">Long sleeve<br>
+  <input type="radio" name="type" value="blouse">Blouse<br>
+  <input type="radio" name="type" value="buttonDown">Button-down<br>
+  <input type="radio" name="type" value="collared">Collared<br>
+  <input type="radio" name="type" value="athletic">Athletic wear<br><br>
+  <input type = "hidden" name ="category" value ="TOP">
 
-  <textarea name="description" size="20">
-  	Add a brief items description
-  </textarea><br>
+  <textarea placeholder="Add a brief items description..." name="description" size="20"></textarea><br>
 <button type="submit">Add Item</button>
 <button type="submit">Cancel</button>
 </form>
