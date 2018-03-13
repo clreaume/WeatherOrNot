@@ -4,14 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add a Dress</title>
+<link rel="stylesheet"
+	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+<title>Dress</title>
 </head>
 <body>
 <h3>Dress</h3>
 <p>Upload a photo of the item.</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
   <input type="text" placeholder="File Upload">
-  <input type="file" accept="image" name =	"imageURL"><br><br>
+  <input type="file" accept="image" name =	"imageURL"><br>
 
 
   <p>Choose the type of dress being added to the closet:</p>

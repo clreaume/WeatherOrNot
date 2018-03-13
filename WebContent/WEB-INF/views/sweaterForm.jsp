@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add a Sweater</title>
+<link rel="stylesheet"
+	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+<title>Sweater</title>
 </head>
 <body>
 <h3>Sweater</h3>
@@ -18,7 +20,7 @@
   <input type="radio" name="type" value="crewneck"> Crewneck<br>
   <input type="radio" name="type" value="zipUp"> Zip-Up<br>
   <input type="radio" name="type" value="cardigan"> Cardigan<br>
-  <input type = "hidden" name ="category" value = "SWEATER">
+  <input type = "hidden" name ="category" value = "SWEATER"><br>
  
 
   <textarea name="description" placeholder="Add a brief item description..."></textarea><br>

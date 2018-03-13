@@ -20,7 +20,7 @@ public class Item implements Serializable {
 	private String cat;
 	private String description;
 	private String imageURL;
-	private String itemId;
+	private int itemId;
 	
 	public Item() {
 		
@@ -81,10 +81,10 @@ public class Item implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column
-	public String getItemId() {
+	public int getItemId() {
 		return itemId;
 	}
-	public void setItemId(String itemId) {
+	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
 	

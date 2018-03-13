@@ -259,7 +259,7 @@ public class HomeController {
 	// but...
 	@RequestMapping("deleteItem")
 	// THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
-	public ModelAndView deleteItem(@RequestParam("id") String id, Model model) {
+	public ModelAndView deleteItem(@RequestParam("id") int id, Model model) {
 
 		Item tempItem = new Item();
 		tempItem.setItemId(id);
@@ -272,26 +272,29 @@ public class HomeController {
 
 	@RequestMapping("putInHamp")
 	// THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
-	public ModelAndView putInHamp(@RequestParam("id") int id) {
+	public ModelAndView putInHamp(@RequestParam("id") int id, Model model) {
+		
+		model.addAttribute("name", currentUser.getFirstName());
 		System.out.println(id);
 		
 		Item itemToModify;
 		itemToModify = itm.getItem(id);
 		
-		System.out.println(itemToModify);
-		System.out.println(itemToModify.getInHamp());
+		//System.out.println(itemToModify);
+		//System.out.println(itemToModify.getInHamp());
 		
 		itm.changeHampStatus(itemToModify);
-		System.out.println(itemToModify.getInHamp());
+		//System.out.println(itemToModify.getInHamp());
 
-
-		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems(currentUser));
+		return new ModelAndView("hamper", "hamperItems", Apparel.getHamperMap(itm, currentUser));
 	}
 
 	@RequestMapping("viewHamp")
-	public ModelAndView viewHamper() {
+	public ModelAndView viewHamper(Model model) {
 
-		return new ModelAndView("hamper", "hamperItems", itm.getHamperItems(currentUser));
+		model.addAttribute("name", currentUser.getFirstName());
+		
+		return new ModelAndView("hamper", "hamperItems", Apparel.getHamperMap(itm, currentUser));
 
 	}
 	
@@ -300,14 +303,23 @@ public class HomeController {
 
 	@RequestMapping("putInCloset")
 	// THIS 'ID' PARAM SNE AKILY PASSED IN FROM FORM USING ~URL ENCODING~
-	public ModelAndView putInCloset(@RequestParam("id") String id) {
+	public ModelAndView putInCloset(@RequestParam("id") int id, Model model) {
 
-		Item tempItem = new Item();
-		tempItem.setItemId(id);
+		System.out.println(id);
+		
+		Item itemToModify;
+		itemToModify = itm.getItem(id);
+		
+		//System.out.println(itemToModify);
+		//System.out.println(itemToModify.getInHamp());
+		
+		itm.changeHampStatus(itemToModify);
+		//System.out.println(itemToModify.getInHamp());
 
-		itm.changeHampStatus(tempItem);
-
-		return new ModelAndView("closet", "msg", "Your item added to closet!");
+	
+		model.addAttribute("clothesMap", Apparel.getClosetMap(itm, currentUser));
+		
+		return new ModelAndView("closet", "name", currentUser.getFirstName());
 	}
 
 	ArrayList<Item> predictedOutfit = null;

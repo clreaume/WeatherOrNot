@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"
+	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
 <title>Shoes</title>
 </head>
 <body>
@@ -11,7 +13,7 @@
 <p>Upload a photo of the item.</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
   <input type="text" placeholder="File Upload" >
-  <input type="file" accept="image" name = "imageURL"><br><br><br>
+  <input type="file" accept="image" name = "imageURL"><br>
   <p>Choose the type of shoes being added to the closet:</p>
   <input type="radio" name="type" value="sneakers">Sneaker<br>
   <input type="radio" name="type" value="boots">Boot<br>

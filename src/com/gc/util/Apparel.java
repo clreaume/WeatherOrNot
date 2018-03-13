@@ -13,7 +13,7 @@ import com.gc.model.User;
 public class Apparel {
 	
 	public static HashMap<String, ArrayList<Item>> getClosetMap(DAOItemImpl itm, User currentUser) {
-		ArrayList<Item> userCloset = itm.getAllItems(currentUser);
+		ArrayList<Item> userCloset = itm.getClosetItems(currentUser);
 		ArrayList<Item> userTops = new ArrayList<Item>();
 		ArrayList<Item> userSweaters = new ArrayList<Item>();	
 		ArrayList<Item> userBottoms = new ArrayList<Item>();	
@@ -53,11 +53,52 @@ public class Apparel {
 		return clothesInCloset;
 	}
 	
+	public static HashMap<String, ArrayList<Item>> getHamperMap(DAOItemImpl itm, User currentUser) {
+		ArrayList<Item> userHamper = itm.getHamperItems(currentUser);
+		ArrayList<Item> userTops = new ArrayList<Item>();
+		ArrayList<Item> userSweaters = new ArrayList<Item>();	
+		ArrayList<Item> userBottoms = new ArrayList<Item>();	
+		ArrayList<Item> userOuterwear = new ArrayList<Item>();	
+		ArrayList<Item> userShoes = new ArrayList<Item>();	
+		ArrayList<Item> userAccessories = new ArrayList<Item>();
+				
+		for (Item item : userHamper) {
+			if (item.getCategory().equals("TOP")) {
+				userTops.add(item);
+			}
+			if (item.getCategory().equals("SWEATER")) {
+				userSweaters.add(item);
+			}
+			if (item.getCategory().equals("BOTTOM")) {
+				userBottoms.add(item);
+			}
+			if (item.getCategory().equals("OUTERWEAR")) {
+				userOuterwear.add(item);
+			}
+			if (item.getCategory().equals("SHOE")) {
+				userShoes.add(item);
+			}
+			if (item.getCategory().equals("ACCESSORY")) {
+				userAccessories.add(item);
+			}
+		}
+		
+		HashMap<String, ArrayList<Item>> clothesInHamper = new HashMap<String, ArrayList<Item>>();
+		clothesInHamper.put("Tops", userTops);
+		clothesInHamper.put("Bottoms", userBottoms);
+		clothesInHamper.put("Sweaters", userSweaters);
+		clothesInHamper.put("Outerwear", userOuterwear);
+		clothesInHamper.put("Shoes", userShoes);
+		clothesInHamper.put("Accessories", userAccessories);
+		
+		return clothesInHamper;
+	}
+	
 	
 	//TO GENERATE SUGGESTED OUTFIT
 	public static ArrayList<Item> generateOutfit(DAOItemImpl itm, User currentUser, API ourAPI){
 
-		ArrayList<Item> allItems = itm.getAllItems(currentUser);
+		ArrayList<Item> allItems = itm.getClosetItems(currentUser);
 		ArrayList<Item> predictedOutfit = new ArrayList<Item>();
 
 		Random randomGenerator;
