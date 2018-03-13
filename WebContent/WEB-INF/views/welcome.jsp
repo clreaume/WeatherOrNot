@@ -10,6 +10,10 @@
 </head>
 <body>
 <h2>Welcome back ${msg}!</h2>
+<br>
+<h3>${cityState} : ${temp}°</h3> 
+<img alt="pic of current weather" src="${icon_url}">
+
 
 <form action = "home">
 <input type="submit" value="Get outfit" >
