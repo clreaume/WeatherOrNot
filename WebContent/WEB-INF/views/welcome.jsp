@@ -13,6 +13,10 @@
 <input type="submit" value="Get outfit" >
 </form>
 
+<form action = "addToCloset">
+<input type="submit" value="Add item to closet" >
+</form>
+
 <form action = "viewCloset">
 <input type="submit" value="View closet" >
 </form>

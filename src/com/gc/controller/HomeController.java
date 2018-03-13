@@ -2,11 +2,9 @@ package com.gc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
-import javax.jws.soap.SOAPBinding.Use;
-import javax.servlet.http.HttpSession;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -18,20 +16,16 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.gc.model.Category;
 import com.gc.model.DAOItemImpl;
 import com.gc.model.DAOUserImpl;
-import com.gc.model.InHamp;
 import com.gc.model.Item;
 import com.gc.model.User;
 import com.gc.util.API;
@@ -253,27 +247,65 @@ public class HomeController {
 	@RequestMapping("viewCloset")
 	public ModelAndView viewCloset(Model model) {
 
-		ArrayList<Item> userCloset = itm.getAllItems(currentUser);
+		model.addAttribute("clothesMap", getClosetMap());
 		
-		model.addAttribute("name", currentUser.getFirstName());
-		return new ModelAndView("closet", "clothes", userCloset);
+		return new ModelAndView("closet", "name", currentUser.getFirstName());
+	}
 
+	private HashMap<String, ArrayList<Item>> getClosetMap() {
+		ArrayList<Item> userCloset = itm.getAllItems(currentUser);
+		ArrayList<Item> userTops = new ArrayList<Item>();
+		ArrayList<Item> userSweaters = new ArrayList<Item>();	
+		ArrayList<Item> userBottoms = new ArrayList<Item>();	
+		ArrayList<Item> userOuterwear = new ArrayList<Item>();	
+		ArrayList<Item> userShoes = new ArrayList<Item>();	
+		ArrayList<Item> userAccessories = new ArrayList<Item>();
+				
+		for (Item item : userCloset) {
+			if (item.getCategory().equals("TOP")) {
+				userTops.add(item);
+			}
+			if (item.getCategory().equals("SWEATER")) {
+				userSweaters.add(item);
+			}
+			if (item.getCategory().equals("BOTTOM")) {
+				userBottoms.add(item);
+			}
+			if (item.getCategory().equals("OUTERWEAR")) {
+				userOuterwear.add(item);
+			}
+			if (item.getCategory().equals("SHOE")) {
+				userShoes.add(item);
+			}
+			if (item.getCategory().equals("ACCESSORY")) {
+				userAccessories.add(item);
+			}
+		}
+		
+		HashMap<String, ArrayList<Item>> clothesInCloset = new HashMap<String, ArrayList<Item>>();
+		clothesInCloset.put("Tops", userTops);
+		clothesInCloset.put("Bottoms", userBottoms);
+		clothesInCloset.put("Sweaters", userSweaters);
+		clothesInCloset.put("Outerwear", userOuterwear);
+		clothesInCloset.put("Shoes", userShoes);
+		clothesInCloset.put("Accessories", userAccessories);
+		
+		return clothesInCloset;
 	}
 
 	// this mapping works with each item having their own delete button. not ideal
 	// but...
 	@RequestMapping("deleteItem")
 	// THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
-	public ModelAndView deleteItem(@RequestParam("id") String id) {
+	public ModelAndView deleteItem(@RequestParam("id") String id, Model model) {
 
 		Item tempItem = new Item();
 		tempItem.setItemId(id);
-
 		itm.deleteItem(tempItem);
-		
-		ArrayList<Item> userCloset = itm.getAllItems(currentUser);
+			
+		model.addAttribute("clothesMap", getClosetMap());
 
-		return new ModelAndView("closet", "clothes", userCloset);
+		return new ModelAndView("closet", "name", currentUser.getFirstName());
 	}
 
 	@RequestMapping("putInHamp")
