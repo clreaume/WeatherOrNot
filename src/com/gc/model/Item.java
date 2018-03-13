@@ -88,8 +88,6 @@ public class Item implements Serializable {
 		this.itemId = itemId;
 	}
 	
-	//@Column(columnDefinition = "enum(TOP, BOTTOM, DRESS, SHOES, SWEATER, OUTERWEAR, ACCESSORY)")
-	//@Enumerated(EnumType.STRING)
 	@Column
 	public String getCategory() {
 		return cat;
