@@ -4,24 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Add a Sweater</title>
 </head>
 <body>
-<h3>Sweaters</h3>
+<h3>Sweater</h3>
+<p>Upload a photo of the item.</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
   <input type="text" placeholder="File Upload">
   <input type="file" name="imageURL" accept="image"><br>
-  <fieldset>
+
+  <p>Choose the type of sweater being added to the closet:</p>
   <input type="radio" name="type" value="hoody"> Hoody<br>
-  <input type="radio" name="type" value="sweatshirt"> Sweatshirt<br>
   <input type="radio" name="type" value="crewneck"> Crewneck<br>
   <input type="radio" name="type" value="zipUp"> Zip-Up<br>
   <input type="radio" name="type" value="cardigan"> Cardigan<br>
   <input type = "hidden" name ="category" value = "SWEATER">
  
-  </fieldset>
 
-  <textarea name="description">Add a brief item description...</textarea>
+  <textarea name="description" placeholder="Add a brief item description..."></textarea><br>
   
  <button >Add Item</button>
  <button type="button Cancel-button" id="button2">Cancel</button>
