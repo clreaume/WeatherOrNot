@@ -55,7 +55,7 @@ public class HomeController {
 	// API OBJECT - VALUES ING API CALL
 	API ourAPI = new API();
 
-	@RequestMapping("getLoginPage")
+	@RequestMapping(value = {"/", "getLoginPage"})
 	public String getLogin() {
 		return "Login";
 	}
@@ -142,19 +142,6 @@ public class HomeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-
-		return "Login";
-	}
-  
-	User currentUser;
-	
-	
-	@RequestMapping("existingUserLogin")
-	public ModelAndView loginUser( @RequestParam("email") String email,
-			@RequestParam("password") String password) {
-=======
->>>>>>> 4067d36d1de23b97f8f5353824b37fd3a366be48
 		
 		
 		model.addAttribute("cityState", ourAPI.getCityState());
