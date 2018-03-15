@@ -18,7 +18,7 @@
 
 <form action="getItemInputForm" class = "blockButton">
 <br> 
-     <select name="itemOfClothing">
+     <select name="itemOfClothing" class = "btn btn-block btn-secondary">
          <option value="top">Top</option>
          <option value="sweater">Sweater</option>
          <option value="dress">Dress</option>
@@ -27,17 +27,17 @@
          <option value="outerwear">Outerwear</option>
          <option value="accessory">Accessory</option>
       </select><br><br>
-     <input type="submit" value = "Select category"><br>
+     <input type="submit" value = "Select category" class = "btn btn-block btn-secondary"><br>
   </form>
   
   </div>
   
   <div class = "inlineButtonDiv">
-  <form action="viewCloset" class = "inlineButton">
-		<input type="submit" value="View closet">
+  <form action="viewCloset" class = "inlineButton" >
+		<input type="submit" value="View closet" class = "btn btn-block btn-secondary">
 	</form>
 	<form action="viewHamp" class = "inlineButton">
-		<input type="submit" value="View Hamper">
+		<input type="submit" value="View Hamper" class = "btn btn-block btn-secondary">
 	</form>
 	</div>
 </body>

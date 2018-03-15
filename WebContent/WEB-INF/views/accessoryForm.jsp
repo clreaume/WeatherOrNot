@@ -17,7 +17,7 @@
 <p>Upload a photo of the item.</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
  
-  <input type="file" accept="image" name ="imageURL">
+  <input type="file" accept="image" name ="imageURL" class = "btn btn-block btn-secondary">
   <br><br>
  <p>Choose the type of accessory being added to the closet:</p>
   <input type="radio" name="type" value="hat"> Hat<br>
@@ -31,7 +31,7 @@
   <textarea name="description" placeholder="Add a brief item description..."></textarea>
   <br><br>
   
-<input type = "submit" value = "Add item">
+<input type = "submit" value = "Add item" class = "btn btn-block btn-secondary">
  
  </form>
  

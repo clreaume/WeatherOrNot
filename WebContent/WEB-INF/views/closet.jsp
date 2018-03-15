@@ -17,15 +17,15 @@
 
 <div class = "inlineButtonDiv" >
 	<form action="home" class = "inlineButton">
-		<input type="submit" value="Get my outfit" >
+		<input type="submit" value="Get my outfit" class = "btn btn-block btn-secondary">
 	</form>
 
 	<form action="addToCloset" class = "inlineButton">
-		<input type="submit" value="Add item to closet" >
+		<input type="submit" value="Add item to closet" class = "btn btn-block btn-secondary">
 	</form>
 
 	<form action="viewHamp" class = "inlineButton">
-		<input type="submit" value="View hamper">
+		<input type="submit" value="View hamper" class = "btn btn-block btn-secondary">
 	</form>
 
 </div>

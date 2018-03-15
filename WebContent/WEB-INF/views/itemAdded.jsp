@@ -19,11 +19,11 @@
 
 
 <form action="addAnother" class = "blockButton">
-<input type = "submit" value = "Add another item">
+<input type = "submit" value = "Add another item" class = "btn btn-block btn-secondary">
 </form>
 
 <form action="viewCloset" class = "blockButton">
-<input type = "submit" value = "View closet">
+<input type = "submit" value = "View closet" class = "btn btn-block btn-secondary">
 </form>
 
 

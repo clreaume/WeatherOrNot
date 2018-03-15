@@ -16,10 +16,10 @@
 <div class = getCityDiv>
 <form action = "getWelcomePage" method = "post">
 <h6>Enter your city:</h6>
-<input type = "text" placeholder="City" name = "city" required>
+<input type = "text" placeholder="City" name = "city" required >
 <br><br>
 <h6>Choose your state:</h6>
-		<select name = "state">
+		<select name = "state" class = "btn btn-block btn-secondary">
 			<option value="AL">Alabama</option>
 			<option value="AK">Alaska</option>
 			<option value="AZ">Arizona</option>
@@ -73,7 +73,7 @@
 			<option value="WY">Wyoming</option>
 		</select> 
 <br><br>
-<input type = "submit" value = "Submit">
+<input type = "submit" value = "Submit" class = "btn btn-block btn-secondary">
 </form>
 </div>
 

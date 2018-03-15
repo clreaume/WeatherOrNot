@@ -19,9 +19,9 @@
 		<br><br>
 		Last name: <input type="text" placeholder="Last name" name="lname" required>
 		<br><br>
-		City: <input type = "text" placeholder="City" name = "city" required>
+		City:<br><input type = "text" placeholder="City" name = "city" required>
 		<br><br>
-		State: <select name = "state">
+		State: <select name = "state" class = "btn btn-block btn-secondary">
 			<option value="AL">Alabama</option>
 			<option value="AK">Alaska</option>
 			<option value="AZ">Arizona</option>
@@ -77,12 +77,13 @@
 		
 		<br><br>
 		
-		E-mail address: <input type="email" placeholder="someone@something.com" name="email" required>
+		E-mail address:<input type="email" placeholder="someone@something.com" name="email" required>
 		<br><br>
-		Password: <input type="password" placeholder="password" name="password" required>
+	 	Password:<input type="password" placeholder="password" name="password" required>
 		<br><br>
 
-		<button type="submit">Sign Up</button>
+		<input type = "submit" value = "Sign up" class = "btn btn-block btn-secondary">
+	
 	</form>
 
 	<br>

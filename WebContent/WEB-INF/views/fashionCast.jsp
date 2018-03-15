@@ -51,15 +51,15 @@
 
 <div class = "buttonDiv">
 	<form action="home" class="blockButton">
-		<input type="submit" value="Get a different outfit">
+		<input type="submit" value="Get a different outfit" class = "btn btn-block btn-secondary">
 	</form>
 
 	<form action="viewCloset"class="blockButton">
-		<input type="submit" value="View closet">
+		<input type="submit" value="View closet" class = "btn btn-block btn-secondary">
 	</form>
 
 	<form action="viewHamp" class="blockButton">
-		<input type="submit" value="View hamper">
+		<input type="submit" value="View hamper" class = "btn btn-block btn-secondary">
 	</form>
 </div>
 <br><br>
