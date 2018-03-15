@@ -55,7 +55,7 @@ public class HomeController {
 	// API OBJECT - VALUES ING API CALL
 	API ourAPI = new API();
 
-	@RequestMapping("getLoginPage")
+	@RequestMapping(value = {"/", "getLoginPage"})
 	public String getLogin() {
 		return "Login";
 	}
