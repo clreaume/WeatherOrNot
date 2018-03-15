@@ -6,16 +6,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.css"
 	media="screen">
+	
+<link rel="stylesheet" href="resources/style.css">
 <title>Location</title>
 </head>
 <body>
 
-<h2>Welcome back ${msg}! Where are you?</h2>
+<h2>Welcome back ${msg}! <br> Where are you?</h2>
 
+<div class = getCityDiv>
 <form action = "getWelcomePage">
-
 <h6>Enter your city:</h6>
-<input type = "text" placeholder="City" name = "city" required><br>
+<input type = "text" placeholder="City" name = "city" required>
+<br><br>
 <h6>Choose your state:</h6>
 		<select name = "state">
 			<option value="AL">Alabama</option>
@@ -70,12 +73,11 @@
 			<option value="WI">Wisconsin</option>
 			<option value="WY">Wyoming</option>
 		</select> 
-		
-		<br>
-
-
+<br><br>
 <input type = "submit" value = "Submit">
 </form>
+</div>
+
 
 </body>
 </html>

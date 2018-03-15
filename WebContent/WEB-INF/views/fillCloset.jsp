@@ -6,13 +6,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.css"
 	media="screen">
+	
+<link rel="stylesheet" href="resources/style.css">
 <title>Fill Closet</title>
 </head>
 <body>
-<h3> Welcome ${name}!</h3>
 
-<h4>Pick a category of clothing to begin.</h4>
-<form action="getItemInputForm">
+<h1>${name}, let's add to your closet:</h1>
+
+<div class = "addItemDiv">
+<h4>Choose the category of the item to add:</h4>
+
+<form action="getItemInputForm" class = "blockButton">
+<br> 
      <select name="itemOfClothing">
          <option value="top">Top</option>
          <option value="sweater">Sweater</option>
@@ -21,17 +27,19 @@
          <option value="shoe">Shoes</option>
          <option value="outerwear">Outerwear</option>
          <option value="accessory">Accessory</option>
-      </select><br><br><br> 
-     <button type="submit">Select Category</button><br>
+      </select><br><br>
+     <input type="submit" value = "Select category"><br>
   </form>
   
-     	<form action="viewCloset">
+  </div>
+  
+  <div class = "inlineButtonDiv">
+  <form action="viewCloset" class = "inlineButton">
 		<input type="submit" value="View closet">
 	</form>
-	
-		<form action="viewHamp">
+	<form action="viewHamp" class = "inlineButton">
 		<input type="submit" value="View Hamper">
 	</form>
-	
+	</div>
 </body>
 </html>

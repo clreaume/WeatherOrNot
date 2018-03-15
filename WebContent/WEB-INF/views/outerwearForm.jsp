@@ -6,16 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+	
+<link rel="stylesheet" href="resources/style.css">
 <title>Outerwear</title>
 </head>
+
 <body>
-<h3>Outerwear</h3>
+<h1>Outerwear</h1>
 <p>Upload a photo of the item.</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
-  <input type="text" placeholder="File Upload">
-  <input type="file" accept="image" name="imageURL"><br>
+  <input type="file" accept="image" name="imageURL">
+  <br><br>
   <p>Choose the type of accessory being added to the closet:</p>
-
   <input type="radio" name="type" value="jacket"> Jacket<br>
   <input type="radio" name="type" value="fleeceJacket"> Fleece Jacket<br>
   <input type="radio" name="type" value="rainCoat"> Rain Coat<br>
@@ -26,9 +28,9 @@
   <input type="radio" name="type" value="furCoat"> Fur Coat<br>
   <input type = "hidden" name ="category" value = "OUTERWEAR"><br>
 
-  <textarea name="description" placeholder="Add a brief item description..."></textarea><br>
-   <button type="button AddItem-button" id="button1" >Add Item</button>
-   <button type="button Cancel-button" id="button2">Cancel</button>
+  <textarea name="description" placeholder="Add a brief item description..."></textarea>
+  <br><br>
+  <input type = "submit" value = "Add item">
  </form>
 </body>
 </html>

@@ -391,6 +391,8 @@ public class HomeController {
 		model.addAttribute("humidity", ourAPI.getRelative_humidity());
 		
 		ArrayList<Item> predictedOutfit = Apparel.generateOutfit(itm, currentUser, ourAPI);
+		
+		model.addAttribute("name", currentUser.getFirstName());
 
 		return new ModelAndView("fashionCast", "outfitItems", predictedOutfit);
 

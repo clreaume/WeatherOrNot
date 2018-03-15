@@ -6,20 +6,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.css"
 	media="screen">
+	
+<link rel="stylesheet" href="resources/style.css">
 <title>Sign Up Form</title>
 </head>
 <body>
 
-	<h3>Join WeatherOrNot today</h3>
+	<h1>Join Weather Or Not</h1>
 	<form action="createUser" method="post">
 
-		<input type="text" placeholder="First Name" name="fname" required><br>
-
-		<input type="text" placeholder="Last Name" name="lname" required><br>
-
-		<input type = "text" placeholder="City" name = "city" required><br>
-
-		<select name = "state">
+		First name: <input type="text" placeholder="First name" name="fname" required>
+		<br><br>
+		Last name: <input type="text" placeholder="Last name" name="lname" required>
+		<br><br>
+		City: <input type = "text" placeholder="City" name = "city" required>
+		<br><br>
+		State: <select name = "state">
 			<option value="AL">Alabama</option>
 			<option value="AK">Alaska</option>
 			<option value="AZ">Arizona</option>
@@ -73,12 +75,12 @@
 			<option value="WY">Wyoming</option>
 		</select> 
 		
-		<br>
+		<br><br>
 		
-		<input type="email" placeholder="Email" name="email" required><br>
-
-		<input type="password" placeholder="Password" name="password" required><br>
-		<br>
+		E-mail address: <input type="email" placeholder="someone@something.com" name="email" required>
+		<br><br>
+		Password: <input type="password" placeholder="password" name="password" required>
+		<br><br>
 
 		<button type="submit">Sign Up</button>
 	</form>

@@ -6,14 +6,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+	
+<link rel="stylesheet" href="resources/style.css">
 <title>Top</title>
 </head>
+
 <body>
-<h3>Top</h3>
-<p>Upload a photo of the item.</p>
+<h1>Top</h1>
+<p>Upload a photo of the item:</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
-  <input type="text" placeholder="File Upload">
-  <input type="file" accept="image" name ="imageURL"><br>
+  
+  <input type="file" accept="image" name ="imageURL"><br><br>
   
   <p>Choose the type of top being added to the closet:</p>
   <input type="radio" name="type" value="tankTop">Tank-top<br>
@@ -21,13 +24,12 @@
   <input type="radio" name="type" value="longSleeve">Long sleeve<br>
   <input type="radio" name="type" value="blouse">Blouse<br>
   <input type="radio" name="type" value="buttonDown">Button-down<br>
-  <input type="radio" name="type" value="collared">Collared<br>
-  <input type="radio" name="type" value="athletic">Athletic wear<br><br>
+  <input type="radio" name="type" value="polo">Polo<br>
   <input type = "hidden" name ="category" value ="TOP">
-
-  <textarea placeholder="Add a brief items description..." name="description" size="20"></textarea><br>
-<button type="submit">Add Item</button>
-<button type="submit">Cancel</button>
+<br>
+  <textarea placeholder="Add a brief items description..." name="description"></textarea>
+  <br><br>
+<input type = "submit" value = "Add item">
 </form>
 </body>
 </html>

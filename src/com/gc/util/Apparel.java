@@ -103,12 +103,10 @@ public class Apparel {
 
 		Random randomGenerator;
 		randomGenerator = new Random();
-		
-		// ACCESSORIES
-		// IF PRECIPITATION
+
 		try {
 			if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
-				// GRAB UMBRELLA
+				
 				for (Item item : allItems) {
 					if (item.getType().equals("umbrella")) {
 						predictedOutfit.add(item);
@@ -122,20 +120,21 @@ public class Apparel {
 				ArrayList<Item> hotTops = new ArrayList<Item>();
 				ArrayList<Item> hotBottoms = new ArrayList<Item>();
 				ArrayList<Item> hotShoes = new ArrayList<Item>();
+				ArrayList<Item> hotOuterwear = new ArrayList<Item>();
 
-				// SET SHOES
-				// IF PRECIPITATION
+				//IF PRECIPITATION
 				if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
-					// SHOES MUST BE WATERPROOF
 					for (Item item : allItems) {
 						if (item.getType().equals("waterproofBoots")) {
 							hotShoes.add(item);
+						}
+						else if (item.getType().equals("rainCoat")) {
+							hotOuterwear.add(item);
 						}
 					}
 				}
 				// ELSE IF NO PRECIPITATION
 				else {
-					// SHOES MUST BE SANDALS, SNEAKERS, FLATS
 					for (Item item : allItems) {
 						if (item.getType().equals("sandals")) {
 							hotShoes.add(item);
@@ -146,15 +145,15 @@ public class Apparel {
 						}
 					}
 				}
-				// SET OUTFIT
+
 				for (Item item : allItems) {
-					// TOP MUST BE TANK TOP OR T-SHIRT
+					
 					if (item.getType().equals("tankTop")) {
 						hotTops.add(item);
 					} else if (item.getType().equals("tshirt")) {
 						hotTops.add(item);
 					}
-					// BOTTOMS MUST BE SHORTS OR SKIRT
+					
 					else if (item.getType().equals("shorts")) {
 						hotBottoms.add(item);
 					} else if (item.getType().equals("skirt")) {
@@ -174,6 +173,10 @@ public class Apparel {
 				index = randomGenerator.nextInt(hotShoes.size());
 				Item hotShoesPick = hotShoes.get(index);
 				predictedOutfit.add(hotShoesPick);
+				
+				index = randomGenerator.nextInt(hotOuterwear.size());
+				Item hotOuterwearPick = hotOuterwear.get(index);
+				predictedOutfit.add(hotOuterwearPick);
 
 			}
 
@@ -182,19 +185,24 @@ public class Apparel {
 				ArrayList<Item> warmTops = new ArrayList<Item>();
 				ArrayList<Item> warmBottoms = new ArrayList<Item>();
 				ArrayList<Item> warmShoes = new ArrayList<Item>();
-				// SET SHOES
+				ArrayList<Item> warmOuterwear = new ArrayList<Item>();
+				
 				// IF PRECIPITATION
 				if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
-					// SHOES MUST BE WATERPROOF
+				
 					for (Item item : allItems) {
 						if (item.getType().equals("waterproofBoots")) {
 							warmShoes.add(item);
+						}
+						
+						else if (item.getType().equals("rainCoat")) {
+							warmOuterwear.add(item);
 						}
 					}
 				}
 				// ELSE IF NO PRECIPITATION
 				else {
-					// SHOES MUST BE SANDALS, SNEAKERS, FLATS
+
 					for (Item item : allItems) {
 						if (item.getType().equals("sandals")) {
 							warmShoes.add(item);
@@ -205,14 +213,13 @@ public class Apparel {
 						}
 					}
 				}
-				// SET OUTFIT
+
 				for (Item item : allItems) {
-					// TOP MUST BE TSHIRT
+					
 					if (item.getType().equals("tshirt")) {
 						warmTops.add(item);
-
 					}
-					// BOTTOMS MUST BE SHORTS, SKIRT OR CAPRIS
+				
 					else if (item.getType().equals("shorts")) {
 						warmBottoms.add(item);
 					} else if (item.getType().equals("skirt")) {
@@ -234,6 +241,9 @@ public class Apparel {
 				Item warmShoesPick = warmShoes.get(index);
 				predictedOutfit.add(warmShoesPick);
 
+				index = randomGenerator.nextInt(warmOuterwear.size());
+				Item warmOuterwearPick = warmOuterwear.get(index);
+				predictedOutfit.add(warmOuterwearPick);
 			}
 
 			// MILD
@@ -242,20 +252,22 @@ public class Apparel {
 				ArrayList<Item> mildBottoms = new ArrayList<Item>();
 				ArrayList<Item> mildShoes = new ArrayList<Item>();
 				ArrayList<Item> mildLayers = new ArrayList<Item>();
+				ArrayList<Item> mildOuterwear = new ArrayList<Item>();
 
-				// SET SHOES
 				// IF PRECIPITATION
 				if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
-					// SHOES MUST BE WATERPROOF
+					
 					for (Item item : allItems) {
 						if (item.getType().equals("waterproofBoots")) {
 							mildShoes.add(item);
+						}
+						else if (item.getType().equals("rainCoat")) {
+							mildOuterwear.add(item);
 						}
 					}
 				}
 				// ELSE IF NO PRECIPITATION
 				else {
-					// SHOES MUST BE BOOTS OR SNEAKERS
 					for (Item item : allItems) {
 						if (item.getType().equals("boots")) {
 							mildShoes.add(item);
@@ -264,13 +276,23 @@ public class Apparel {
 						}
 					}
 				}
-				// SET OUTFIT
+				
 				for (Item item : allItems) {
-					// TOP MUST BE TSHIRT (WITH LAYER)
+					
 					if (item.getType().equals("tshirt")) {
 						mildTops.add(item);
 					}
-					// BOTTOM MUST BE CAPRIS, PANTS, JEANS OR LEGGINGS
+					else if (item.getType().equals("blouse")) {
+						mildTops.add(item);
+					}
+					else if (item.getType().equals("buttonDown")) {
+						mildTops.add(item);
+					}
+					else if (item.getType().equals("polo")) {
+						mildTops.add(item);
+					}
+					
+					
 					else if (item.getType().equals("capris")) {
 						mildBottoms.add(item);
 					} else if (item.getType().equals("pants")) {
@@ -281,7 +303,7 @@ public class Apparel {
 						mildBottoms.add(item);
 					}
 
-					// LAYER MUST BE ZIP UP OR CARDIGAN (?)
+				
 					else if (item.getType().equals("zipUp")) {
 						mildLayers.add(item);
 					} else if (item.getType().equals("cardigan")) {
@@ -305,6 +327,10 @@ public class Apparel {
 				index = randomGenerator.nextInt(mildLayers.size());
 				Item mildLayerPick = mildLayers.get(index);
 				predictedOutfit.add(mildLayerPick);
+				
+				index = randomGenerator.nextInt(mildOuterwear.size());
+				Item mildOuterwearPick = mildOuterwear.get(index);
+				predictedOutfit.add(mildOuterwearPick);
 
 			}
 
@@ -314,20 +340,23 @@ public class Apparel {
 				ArrayList<Item> crispBottoms = new ArrayList<Item>();
 				ArrayList<Item> crispShoes = new ArrayList<Item>();
 				ArrayList<Item> crispOuterwear = new ArrayList<>();
+				ArrayList<Item> crispAccessories = new ArrayList<>();
 
-				// SET SHOES
 				// IF PRECIPITATION
 				if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
-					// SHOES MUST BE WATERPROOF
+					
 					for (Item item : allItems) {
 						if (item.getType().equals("waterproofBoots")) {
 							crispShoes.add(item);
+						}
+						else if (item.getType().equals("umbrella")) {
+							crispAccessories.add(item);
 						}
 					}
 				}
 				// ELSE IF NO PRECIPITATION
 				else {
-					// SHOES MUST BE BOOTS OR SNEAKERS
+					
 					for (Item item : allItems) {
 						if (item.getType().equals("boots")) {
 							crispShoes.add(item);
@@ -336,14 +365,25 @@ public class Apparel {
 						}
 					}
 				}
-				// SET OUTFIT
+				
 				for (Item item : allItems) {
-					// TOP MUST BE TSHIRT (WILL HAVE OUTERWEAR)
-					// ANY OTHER TOPS HERE?
+					
 					if (item.getType().equals("tshirt")) {
 						crispTops.add(item);
 					}
-					// BOTTOMS MUST BE PANTS, JEANS OR LEGGINGS
+					else if (item.getType().equals("blouse")) {
+						crispTops.add(item);
+					}
+					else if (item.getType().equals("buttonDown")) {
+						crispTops.add(item);
+					}
+					else if (item.getType().equals("polo")) {
+						crispTops.add(item);
+					}
+					else if (item.getType().equals("longSleeve")) {
+						crispTops.add(item);
+					}
+					
 					else if (item.getType().equals("pants")) {
 						crispBottoms.add(item);
 					} else if (item.getType().equals("jeans")) {
@@ -352,16 +392,15 @@ public class Apparel {
 						crispBottoms.add(item);
 					}
 
-					// OUTERWEAR MUST BE JACKET, PEA COAT, LEATHER JACKET, OR FLEECE JACKET
 					else if (item.getType().equals("jacket")) {
-						crispOuterwear.add(item);
-					} else if (item.getType().equals("peaCoat")) {
 						crispOuterwear.add(item);
 					} else if (item.getType().equals("leatherJacket")) {
 						crispOuterwear.add(item);
 					} else if (item.getType().equals("fleeceJacket")) {
 						crispOuterwear.add(item);
 					}
+					
+					
 				}
 
 				int index = randomGenerator.nextInt(crispTops.size());
@@ -379,8 +418,10 @@ public class Apparel {
 				index = randomGenerator.nextInt(crispOuterwear.size());
 				Item crispOuterwearPick = crispOuterwear.get(index);
 				predictedOutfit.add(crispOuterwearPick);
-
-				// NO LAYER AT THIS TEMP?
+				
+				index = randomGenerator.nextInt(crispAccessories.size());
+				Item crispAccessoriesPick = crispAccessories.get(index);
+				predictedOutfit.add(crispAccessoriesPick);
 
 			}
 
@@ -391,48 +432,73 @@ public class Apparel {
 				ArrayList<Item> coolShoes = new ArrayList<Item>();
 				ArrayList<Item> coolLayer = new ArrayList<Item>();
 				ArrayList<Item> coolOuterwear = new ArrayList<Item>();
-				// SET SHOES
+				ArrayList<Item> coolAccessories = new ArrayList<Item>();
+				
 				// IF PRECIPITATION
 				if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
-					// SHOES MUST BE WATERPROOF
 					for (Item item : allItems) {
 						if (item.getType().equals("waterproofBoots")) {
 							coolShoes.add(item);
+						}
+						else if (item.getType().equals("umbrella")) {
+							coolAccessories.add(item);
 						}
 					}
 				}
 				// ELSE IF NO PRECIPITATION
 				else {
-					// SHOES MUST BE BOOTS
 					for (Item item : allItems) {
 						if (item.getType().equals("boots")) {
 							coolShoes.add(item);
 						}
 					}
 				}
-				// SET OUTFIT
+
 				for (Item item : allItems) {
-					// TOP MUST BE TSHIRT (WITH LAYER)
-					// ANY OTHER TOPS HERE?
+					
 					if (item.getType().equals("tshirt")) {
 						coolTops.add(item);
 					}
+					else if (item.getType().equals("blouse")) {
+						coolTops.add(item);
+					}
+					else if (item.getType().equals("buttonDown")) {
+						coolTops.add(item);
+					}
+					else if (item.getType().equals("polo")) {
+						coolTops.add(item);
+					}
+					else if (item.getType().equals("longSleeve")) {
+						coolTops.add(item);
+					}
 
-					// BOTTOMS MUST BE PANTS OR JEANS
+					
 					else if (item.getType().equals("pants")) {
 						coolBottoms.add(item);
 					} else if (item.getType().equals("jeans")) {
 						coolBottoms.add(item);
 					}
 
-					// LAYER MUST BE ZIP UP OR CARDIGAN
+					
 					else if (item.getType().equals("zipUp")) {
 						coolLayer.add(item);
 					} else if (item.getType().equals("cardigan")) {
 						coolLayer.add(item);
 					}
-					// OUTERWEAR MUST BE WINTER COAT
+				
 					else if (item.getType().equals("winterCoat")) {
+						coolOuterwear.add(item);
+					}
+					else if (item.getType().equals("fleeceJacket")) {
+						coolOuterwear.add(item);
+					}
+					else if (item.getType().equals("leatherJacket")) {
+						coolOuterwear.add(item);
+					}
+					else if (item.getType().equals("jacket")) {
+						coolOuterwear.add(item);
+					}
+					else if (item.getType().equals("peaCoat")) {
 						coolOuterwear.add(item);
 					}
 
@@ -457,6 +523,9 @@ public class Apparel {
 				Item coolOuterwearPick = coolOuterwear.get(index);
 				predictedOutfit.add(coolOuterwearPick);
 
+				index = randomGenerator.nextInt(coolAccessories.size());
+				Item coolAccessoriesPick = coolAccessories.get(index);
+				predictedOutfit.add(coolAccessoriesPick);
 			}
 
 			// COLD
@@ -466,40 +535,56 @@ public class Apparel {
 				ArrayList<Item> coldShoes = new ArrayList<Item>();
 				ArrayList<Item> coldLayer = new ArrayList<Item>();
 				ArrayList<Item> coldOuterwear = new ArrayList<Item>();
-				// GET SHOES
+				ArrayList<Item> coldAccessories = new ArrayList<Item>();
+				
 				// IF PRECIPITATION
 				if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
-					// SHOES MUST BE WATERPROOF
+					
 					for (Item item : allItems) {
 						if (item.getType().equals("waterproofBoots")) {
 							coldShoes.add(item);
+						}
+						else if (item.getType().equals("umbrealla")) {
+							coldAccessories.add(item);
 						}
 					}
 				}
 				// ELSE IF NO PRECIPITATION
 				else {
-					// SHOES MUST BE BOOTS
+				
 					for (Item item : allItems) {
 						if (item.getType().equals("boots")) {
 							coldShoes.add(item);
 						}
 					}
 				}
-				// GET OUTFIT
+				
 				for (Item item : allItems) {
-					// TOP MUST BE TSHIRT (WITH LAYER)
-					// WHAT OTHER SHIRTS SHOULD GO HERE?
+					
 					if (item.getType().equals("tshirt")) {
 						coldTops.add(item);
 					}
-					// BOTTOMS MUST BE PANTS OR JEANS
+					else if (item.getType().equals("blouse")) {
+						coldTops.add(item);
+					}
+					else if (item.getType().equals("buttonDown")) {
+						coldTops.add(item);
+					}
+					else if (item.getType().equals("polo")) {
+						coldTops.add(item);
+					}
+					else if (item.getType().equals("longSleeve")) {
+						coldTops.add(item);
+					}
+					
+					
 					else if (item.getType().equals("pants")) {
 						coldBottoms.add(item);
 					} else if (item.getType().equals("jeans")) {
 						coldBottoms.add(item);
 					}
 
-					// LAYER CAN BE OF ANY TYPE
+					
 					else if (item.getType().equals("zipUp")) {
 						coldLayer.add(item);
 					} else if (item.getType().equals("cardigan")) {
@@ -512,11 +597,28 @@ public class Apparel {
 						coldLayer.add(item);
 					}
 
-					// OUTERWEAR MUST BE WINTER COAT OR PARKA
+					
 					else if (item.getType().equals("winterCoat")) {
 						coldOuterwear.add(item);
 					} else if (item.getType().equals("parka")) {
 						coldOuterwear.add(item);
+					}
+					else if (item.getType().equals("furCoat")) {
+						coldOuterwear.add(item);
+					}
+					else if (item.getType().equals("peaCoat")) {
+						coldOuterwear.add(item);
+					}
+					
+					
+					else if (item.getType().equals("gloves")) {
+						coldAccessories.add(item);
+					}
+					else if (item.getType().equals("hat")) {
+						coldAccessories.add(item);
+					}
+					else if (item.getType().equals("scarf")) {
+						coldAccessories.add(item);
 					}
 
 				}
@@ -539,6 +641,10 @@ public class Apparel {
 				index = randomGenerator.nextInt(coldOuterwear.size());
 				Item coldOuterwearPick = coldOuterwear.get(index);
 				predictedOutfit.add(coldOuterwearPick);
+				
+				index = randomGenerator.nextInt(coldAccessories.size());
+				Item coldAccessoriesPick = coldAccessories.get(index);
+				predictedOutfit.add(coldAccessoriesPick);
 
 			}
 
@@ -549,10 +655,11 @@ public class Apparel {
 				ArrayList<Item> freezingShoes = new ArrayList<Item>();
 				ArrayList<Item> freezingLayer = new ArrayList<Item>();
 				ArrayList<Item> freezingOuterwear = new ArrayList<Item>();
-				// GET SHOES
+				ArrayList<Item> freezingAccessories = new ArrayList<Item>();
+				
 				// IF PRECIPITATION
 				if (Double.parseDouble(ourAPI.getPrecip_today_in()) > 0.0) {
-					// SHOES MUST BE WATERPROOF
+					
 					for (Item item : allItems) {
 						if (item.getType().equals("waterproofBoots")) {
 							freezingShoes.add(item);
@@ -561,28 +668,40 @@ public class Apparel {
 				}
 				// ELSE IF NO PRECIPITATION
 				else {
-					// SHOES MUST BE BOOTS
+					
 					for (Item item : allItems) {
 						if (item.getType().equals("boots")) {
 							freezingShoes.add(item);
 						}
 					}
 				}
-				// GET OUTFIT
+				
 				for (Item item : allItems) {
-					// TOP MUST BE TSHIRT (WITH LAYER)
-					// WHAT OTHER SHIRTS SHOULD GO HERE?
+					
 					if (item.getType().equals("tshirt")) {
 						freezingTops.add(item);
 					}
-					// BOTTOMS MUST BE PANTS OR JEANS
+					else if (item.getType().equals("blouse")) {
+						freezingTops.add(item);
+					}
+					else if (item.getType().equals("buttonDown")) {
+						freezingTops.add(item);
+					}
+					else if (item.getType().equals("polo")) {
+						freezingTops.add(item);
+					}
+					else if (item.getType().equals("longSleeve")) {
+						freezingTops.add(item);
+					}
+					
+					
 					else if (item.getType().equals("pants")) {
 						freezingBottoms.add(item);
 					} else if (item.getType().equals("jeans")) {
 						freezingBottoms.add(item);
 					}
 
-					// LAYER CAN BE OF ANY TYPE
+					
 					else if (item.getType().equals("zipUp")) {
 						freezingLayer.add(item);
 					} else if (item.getType().equals("cardigan")) {
@@ -595,10 +714,31 @@ public class Apparel {
 						freezingLayer.add(item);
 					}
 
-					// OUTERWEAR MUST BE PARKA
+					
 					else if (item.getType().equals("parka")) {
 						freezingOuterwear.add(item);
 					}
+					else if (item.getType().equals("winterCoat")) {
+						freezingOuterwear.add(item);
+					}
+					else if (item.getType().equals("furCoat")) {
+						freezingOuterwear.add(item);
+					}
+					else if (item.getType().equals("peaCoat")) {
+						freezingOuterwear.add(item);
+					}
+					
+					
+					else if (item.getType().equals("gloves")) {
+						freezingAccessories.add(item);
+					}
+					else if (item.getType().equals("hat")) {
+						freezingAccessories.add(item);
+					}
+					else if (item.getType().equals("scarf")) {
+						freezingAccessories.add(item);
+					}
+					
 				}
 
 				int index = randomGenerator.nextInt(freezingTops.size());
@@ -617,11 +757,13 @@ public class Apparel {
 				Item freezingLayerPick = freezingLayer.get(index);
 				predictedOutfit.add(freezingLayerPick);
 				
-				//System.out.println("size of freezing outerwear arraylist: " + freezingOuterwear.size());
 				index = randomGenerator.nextInt(freezingOuterwear.size());
-				//System.out.println("index" + index);
 				Item freezingOuterwearPick = freezingOuterwear.get(index);
 				predictedOutfit.add(freezingOuterwearPick);
+				
+				index = randomGenerator.nextInt(freezingAccessories.size());
+				Item freezingAccessoriesPick = freezingAccessories.get(index);
+				predictedOutfit.add(freezingAccessoriesPick);
 
 			}
 		} catch (NullPointerException e) {
@@ -629,7 +771,6 @@ public class Apparel {
 			e.printStackTrace();
 		} catch(IllegalArgumentException i) {
 			System.out.println("error");
-			//return new ModelAndView("error", "errorMsg", "Your closet does not contain items appropriate for the current weather conditions. Please add more items or stay inside!");
 		}
 		
 		return predictedOutfit;

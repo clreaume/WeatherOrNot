@@ -6,27 +6,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+	
+<link rel="stylesheet" href="resources/style.css">
 <title>Sweater</title>
 </head>
-<body>
-<h3>Sweater</h3>
-<p>Upload a photo of the item.</p>
-<form action="addItem" method="post" enctype="multipart/form-data">
-  <input type="text" placeholder="File Upload">
-  <input type="file" name="imageURL" accept="image"><br>
 
+<body>
+<h1>Sweater</h1>
+<p>Upload a photo of the item:</p>
+<form action="addItem" method="post" enctype="multipart/form-data">
+
+  <input type="file" name="imageURL" accept="image">
+  <br><br>
   <p>Choose the type of sweater being added to the closet:</p>
   <input type="radio" name="type" value="hoody"> Hoody<br>
   <input type="radio" name="type" value="crewneck"> Crewneck<br>
   <input type="radio" name="type" value="zipUp"> Zip-Up<br>
   <input type="radio" name="type" value="cardigan"> Cardigan<br>
-  <input type = "hidden" name ="category" value = "SWEATER"><br>
+  <input type = "hidden" name ="category" value = "SWEATER">
+  <br>
  
-
-  <textarea name="description" placeholder="Add a brief item description..."></textarea><br>
+  <textarea name="description" placeholder="Add a brief item description..."></textarea>
+  <br><br>
   
- <button >Add Item</button>
- <button type="button Cancel-button" id="button2">Cancel</button>
+ <input type = "submit" value = "Add item">
 </form>
 </body>
 </html>

@@ -4,17 +4,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"
+	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+
+<link rel="stylesheet" href="resources/style.css">
 <title>Item Added</title>
 </head>
 <body>
-<h4>What do you want to do with your life?</h4>
 
-<form action="addAnother">
-<button type="submit">Add Another Item</button>
+
+<h2>Item added to your closet!</h2>
+<h4>What would you like to do next?</h4>
+
+
+
+<form action="addAnother" class = "blockButton">
+<input type = "submit" value = "Add another item">
 </form>
 
-<form action="viewCloset">
-<button type="submit">View Closet</button>
+<form action="viewCloset" class = "blockButton">
+<input type = "submit" value = "View closet">
 </form>
+
+
+
 </body>
 </html>

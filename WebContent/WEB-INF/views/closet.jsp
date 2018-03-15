@@ -8,33 +8,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+	
+<link rel="stylesheet" href="resources/style.css">
 <title>Insert title here</title>
 </head>
 <body>
 
 	<h1>${name}'s Closet</h1>
 
-	<form action="home">
-		<input type="submit" value="Get my outfit">
+<div class = "inlineButtonDiv" >
+	<form action="home" class = "inlineButton">
+		<input type="submit" value="Get my outfit" >
 	</form>
 
-	<form action="addToCloset">
-		<input type="submit" value="Add item">
+	<form action="addToCloset" class = "inlineButton">
+		<input type="submit" value="Add item to closet" >
 	</form>
 
-	<form action="viewHamp">
+	<form action="viewHamp" class = "inlineButton">
 		<input type="submit" value="View Hamper">
 	</form>
 
+</div>
 
+<div class = "closetAndHamp">
 	<c:forEach var="category" items="${clothesMap}">
 
-
-			
 			<h2>${category.key}</h2>
-
-
-
 
 			<c:choose>
 				<c:when test="${category.value.size() > 0}">
@@ -65,12 +65,10 @@
 
 				</c:when>
 
-
 			</c:choose>
 
-
 		</c:forEach>
-		
+</div>
 	
 </body>
 </html>

@@ -7,17 +7,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+	
+<link rel="stylesheet" href="resources/style.css">
 <title>Weather Or Not</title>
 </head>
 <body>
+<div class = "weatherInfo">
+<h4>Current weather conditions in</h4>
+<h4 style ="text-decoration: underline">${cityState}</h4>
+<h4>${temp} °F & ${weather}</h4>
+<h4>Precipitation: ${precip} %</h4>
+<h4>Humidity: ${humidity}</h2>
 
-<h2>${cityState}</h2>
-<h2>${temp} °F</h2>
-<h2>${weather}</h2>
-<h2>Precipitation: ${precip} %</h2>
-<h2>Humidity: ${humidity}</h2>
+</div>
+
+<div class = "weatherImg">
+<img alt="pic of current weather" src="${icon_url}">
+<img alt="pic of current weather" src="${icon_url}">
+<img alt="pic of current weather" src="${icon_url}">
+<img alt="pic of current weather" src="${icon_url}">
 <img alt="pic of current weather" src="${icon_url}">
 
+</div>
+<br>
+<h1>${name}, wear this:</h1>
 	<table border="1">
 		<!-- only options for border are 1 or 0 -->
 		<c:forEach var="myVar" items="${outfitItems}">
@@ -36,19 +49,24 @@
 		</c:forEach>
 
 	</table>
+	
+<br><br>
 
-	<form action="home">
+<div class = "buttonDiv">
+	<form action="home" class="blockButton">
 		<input type="submit" value="Different Outfit">
 	</form>
-	<form action="viewCloset">
+
+	<form action="viewCloset"class="blockButton">
 		<input type="submit" value="View closet">
 	</form>
 
-	<form action="viewHamp">
+	<form action="viewHamp" class="blockButton">
 		<input type="submit" value="View Hamper">
 	</form>
-
-
+</div>
+<br><br>
+<p>Please note: Weather Or Not's suggestion is restricted to only the clothes currently in your closet. For a truly weather-appropriate outfit, please fill your closet with a range of attire.</p>
 
 </body>
 </html>

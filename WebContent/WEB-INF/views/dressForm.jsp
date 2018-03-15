@@ -8,13 +8,14 @@
 	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
 <title>Dress</title>
 </head>
+
 <body>
-<h3>Dress</h3>
+<h1>Dress</h1>
 <p>Upload a photo of the item.</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
-  <input type="text" placeholder="File Upload">
-  <input type="file" accept="image" name =	"imageURL"><br>
-
+ 
+  <input type="file" accept="image" name =	"imageURL">
+  <br><br>
 
   <p>Choose the type of dress being added to the closet:</p>
   <input type="radio" name="type" value="maxi">Maxi<br>
@@ -22,14 +23,14 @@
   <input type="radio" name="type" value="party">Party<br>
   <input type="radio" name="type" value="mindy">Mindy<br>
   <input type="radio" name="type" value="flare">Flare<br>
-  <input type="radio" name="type" value="gown">Gown<br><br>
+  <input type="radio" name="type" value="gown">Gown
   <input type = "hidden" name ="category" value = "DRESS">
+  <br>
   
-  
-<textarea name="description" placeholder="Add a brief item description..."></textarea><br>  
+<textarea name="description" placeholder="Add a brief item description..."></textarea>
+<br><br>  
 
-<button type="submit">Add Item</button>
-<button type="submit">Cancel</button>
+<input type = "submit" value = "Add item">
 
 </form>
 

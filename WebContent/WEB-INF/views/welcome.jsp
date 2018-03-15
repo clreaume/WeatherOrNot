@@ -6,31 +6,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+<link rel="stylesheet" href="resources/style.css">
 <title>Weather Or Not</title>
 </head>
 <body>
 <h2>Welcome back ${msg}!</h2>
 <br>
-<h3>${cityState} : ${temp}°</h3> 
-<img alt="pic of current weather" src="${icon_url}">
 
 
-<form action = "home">
+<h3>${cityState} : ${temp}°F</h3> 
+<img alt="pic of current weather" src="${icon_url}" class = "weatherImg">
+
+<div>
+
+<form action = "home" class = "blockButton">
 <input type="submit" value="Get outfit" >
 </form>
 
-<form action = "addToCloset">
+<form action = "addToCloset" class = "blockButton">
 <input type="submit" value="Add item to closet" >
 </form>
 
-<form action = "viewCloset">
+<form action = "viewCloset" class = "blockButton">
 <input type="submit" value="View closet" >
 </form>
 
-<form action = "viewHamp">
+<form action = "viewHamp" class = "blockButton">
 <input type="submit" value="View hamper">
 </form>
 
+</div>
 
 
 </body>
