@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
-	
+	<link rel="stylesheet" href="resources/style.css">
 <title>Top</title>
 </head>
 
