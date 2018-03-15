@@ -8,7 +8,6 @@
 <link rel="stylesheet"
 	href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
 	
-<link rel="stylesheet" href="resources/style.css">
 <title>Weather Or Not</title>
 </head>
 <body>
