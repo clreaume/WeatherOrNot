@@ -12,16 +12,16 @@
 </head>
 <body>
 
-<h3>Welcome to Weather Or Not</h3> 
-<p>When you are getting ready always listen to your Mother...</p>
-<p>...Mother Nature</p>
+<h3>Weather Or Not</h3> 
+<h6>When you are getting ready always listen to your Mother...</h6>
+<h6>...Mother Nature</h6>
 
 ${msg}
 
 <form action="existingUserLogin" class="existingUserLoginForm" method="post"> 
         <input type="email" placeholder="E-mail" name = "email" required><br>
         <input type="password" placeholder="Password" name="password" required><br><br>
-        <input type="submit" value = "Continue">
+        <input type="submit" value = "Continue" style ="text-align: center; margin: 0 auto;">
 </form>
 <br><br>
 <h3>New To Weather Or Not?</h3><br>

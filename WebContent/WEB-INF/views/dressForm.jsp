@@ -12,19 +12,20 @@
 
 <body>
 <h1>Dress</h1>
-<p>Upload a photo of the item.</p>
+
+<div class = itemInputDiv>
+<p>Upload a photo of the item:</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
  
   <input type="file" accept="image" name =	"imageURL">
   <br><br>
-
   <p>Choose the type of dress being added to the closet:</p>
-  <input type="radio" name="type" value="maxi">Maxi<br>
-  <input type="radio" name="type" value ="fancy">Fancy<br>
-  <input type="radio" name="type" value="party">Party<br>
-  <input type="radio" name="type" value="mindy">Mindy<br>
-  <input type="radio" name="type" value="flare">Flare<br>
-  <input type="radio" name="type" value="gown">Gown
+  <input type="radio" name="type" value="maxi"> Maxi<br>
+  <input type="radio" name="type" value ="fancy"> Fancy<br>
+  <input type="radio" name="type" value="party"> Party<br>
+  <input type="radio" name="type" value="mindy"> Mindy<br>
+  <input type="radio" name="type" value="flare"> Flare<br>
+  <input type="radio" name="type" value="gown"> Gown <br>
   <input type = "hidden" name ="category" value = "DRESS">
   <br>
   
@@ -34,6 +35,7 @@
 <input type = "submit" value = "Add item">
 
 </form>
+</div>
 
 </body>
 </html>

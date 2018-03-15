@@ -14,7 +14,7 @@
 <h2>Welcome back ${msg}! <br> Where are you?</h2>
 
 <div class = getCityDiv>
-<form action = "getWelcomePage">
+<form action = "getWelcomePage" method = "post">
 <h6>Enter your city:</h6>
 <input type = "text" placeholder="City" name = "city" required>
 <br><br>

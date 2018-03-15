@@ -13,6 +13,8 @@
 
 <body>
 <h1>Sweater</h1>
+
+<div class = itemInputDiv>
 <p>Upload a photo of the item:</p>
 <form action="addItem" method="post" enctype="multipart/form-data">
 
@@ -31,5 +33,7 @@
   
  <input type = "submit" value = "Add item">
 </form>
+
+</div>
 </body>
 </html>

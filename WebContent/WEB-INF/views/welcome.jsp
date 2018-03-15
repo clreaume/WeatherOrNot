@@ -17,7 +17,7 @@
 <h3>${cityState} : ${temp}°F</h3> 
 <img alt="pic of current weather" src="${icon_url}" class = "weatherImg">
 
-<div>
+<div class = "blockButtonDiv">
 
 <form action = "home" class = "blockButton">
 <input type="submit" value="Get my outfit" >
