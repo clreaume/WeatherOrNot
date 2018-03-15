@@ -39,11 +39,7 @@ import com.gc.util.Apparel;
  */
 // wunderground api key: be4423cb67742fcc
 
-//generateoutfit
-//getclosetmap
-
 @Controller
-//@SessionAttributes("user1")
 public class HomeController {
 
 	private static final String PIC_PATH = "resources/";
@@ -143,13 +139,10 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		
-		
 		model.addAttribute("cityState", ourAPI.getCityState());
 		model.addAttribute("temp", ourAPI.getTemp_f());
 		model.addAttribute("icon_url", ourAPI.getIcon_URL());
-		
-		System.out.println("first name" + currentUser.getFirstName());
-			
+					
 		return new ModelAndView("welcome", "msg", currentUser.getFirstName());
 		
 	}
@@ -284,7 +277,6 @@ public class HomeController {
 			url = (String) uploadResult.get("url");
 			System.out.println(uploadResult.get("url"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -310,9 +302,7 @@ public class HomeController {
 		return new ModelAndView("closet", "name", currentUser.getFirstName());
 	}
 
-	
-	// this mapping works with each item having their own delete button. not ideal
-	// but...
+
 	@RequestMapping("deleteItem")
 	// THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
 	public ModelAndView deleteItem(@RequestParam("id") int id, Model model) {
@@ -335,12 +325,7 @@ public class HomeController {
 		
 		Item itemToModify;
 		itemToModify = itm.getItem(id);
-		
-		//System.out.println(itemToModify);
-		//System.out.println(itemToModify.getInHamp());
-		
 		itm.changeHampStatus(itemToModify);
-		//System.out.println(itemToModify.getInHamp());
 
 		return new ModelAndView("hamper", "hamperItems", Apparel.getHamperMap(itm, currentUser));
 	}
@@ -354,24 +339,14 @@ public class HomeController {
 
 	}
 	
-	//WE CAN CREATE NEW USER, LOGIN EXISTING USER, ADD ITEM, DELETE ITEM, VIEW CLOSET
-	//NOT GET OUTFIT
 
 	@RequestMapping("putInCloset")
-	// THIS 'ID' PARAM SNE AKILY PASSED IN FROM FORM USING ~URL ENCODING~
+	// THIS 'ID' PARAM SNEAKILY PASSED IN FROM FORM USING ~URL ENCODING~
 	public ModelAndView putInCloset(@RequestParam("id") int id, Model model) {
-
-		System.out.println(id);
 		
 		Item itemToModify;
 		itemToModify = itm.getItem(id);
-		
-		//System.out.println(itemToModify);
-		//System.out.println(itemToModify.getInHamp());
-		
 		itm.changeHampStatus(itemToModify);
-		//System.out.println(itemToModify.getInHamp());
-
 	
 		model.addAttribute("clothesMap", Apparel.getClosetMap(itm, currentUser));
 		
@@ -396,8 +371,6 @@ public class HomeController {
 
 		return new ModelAndView("fashionCast", "outfitItems", predictedOutfit);
 
-		// TODO ADD ${outfitItems} EL tag in fashionCast file and weird core tags to
-		// loop through/display all photos
 	}
 
 

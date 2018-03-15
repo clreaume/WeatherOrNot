@@ -21,7 +21,7 @@
 	</form>
 
 	<form action="addToCloset" class = "inlineButton">
-		<input type="submit" value="Add item" >
+		<input type="submit" value="Add item to closet" >
 	</form>
 
 	<form action="viewCloset" class = "inlineButton">

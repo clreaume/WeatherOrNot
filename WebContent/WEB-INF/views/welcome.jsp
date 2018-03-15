@@ -20,7 +20,7 @@
 <div>
 
 <form action = "home" class = "blockButton">
-<input type="submit" value="Get outfit" >
+<input type="submit" value="Get my outfit" >
 </form>
 
 <form action = "addToCloset" class = "blockButton">

@@ -26,7 +26,7 @@
 	</form>
 
 	<form action="viewHamp" class = "inlineButton">
-		<input type="submit" value="View Hamper">
+		<input type="submit" value="View hamper">
 	</form>
 
 </div>

@@ -18,14 +18,14 @@
 
 ${msg}
 
-<form action="existingUserLogin" class="existingUserLoginForm"> 
+<form action="existingUserLogin" class="existingUserLoginForm" method="post"> 
         <input type="email" placeholder="E-mail" name = "email" required><br>
         <input type="password" placeholder="Password" name="password" required><br><br>
         <input type="submit" value = "Continue">
 </form>
 <br><br>
-<h3>New To WeatherOrNot?</h3><br>
-<form action="getsignup">
+<h3>New To Weather Or Not?</h3><br>
+<form action="getsignup" method="post">
 	<input type="submit" value = "Sign Up">
 </form>
 </body>

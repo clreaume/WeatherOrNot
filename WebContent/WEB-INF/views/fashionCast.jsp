@@ -38,10 +38,8 @@
 
 
 			<tr>
-				<td><img alt="" src="${myVar.imageURL}" height="100px"
-					width="100px"></td>
-				<%-- <td>${ myVar.cat}</td> --%>
-				<td>${ myVar.type}</td>
+				<td><img alt="" src="${myVar.imageURL}" height="170px"
+					width="150px"></td>
 				<td>${ myVar.description}</td>
 			</tr>
 
@@ -54,7 +52,7 @@
 
 <div class = "buttonDiv">
 	<form action="home" class="blockButton">
-		<input type="submit" value="Different Outfit">
+		<input type="submit" value="Get a different outfit">
 	</form>
 
 	<form action="viewCloset"class="blockButton">
@@ -62,7 +60,7 @@
 	</form>
 
 	<form action="viewHamp" class="blockButton">
-		<input type="submit" value="View Hamper">
+		<input type="submit" value="View hamper">
 	</form>
 </div>
 <br><br>
